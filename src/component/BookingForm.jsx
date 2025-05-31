@@ -34,7 +34,7 @@ const BookingForm = ({className, title}) => {
               </span>
               
               {/* For all input in Personal Information*/}
-              <div className='mx-7 info'>
+              <div className='mx-3 info'>
                 {/* Each input */}
                 <div className='mt-4'> 
                   <label htmlFor="Name" className='text-sm font-semibold block mb-3'>Your Name *</label>
@@ -92,7 +92,7 @@ const BookingForm = ({className, title}) => {
               </span>
               
               {/* For the service options */}
-              <div className='mx-7'>
+              <div className='mx-3'>
               <label htmlFor="Phone" className='text-sm font-semibold block mb-3'>Select Service *</label>
                 <select  name="Service" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
                   {...register('service', {
@@ -135,7 +135,7 @@ const BookingForm = ({className, title}) => {
               </span>
               
               {/* For the schedule options */}
-              <div className='mx-7 grid gap-y-3 info'>
+              <div className='mx-3 grid gap-y-3 info'>
                 <div className=''> 
                   <label htmlFor="date" className='text-sm font-semibold block mb-3'>Prefered Date *</label>
                   <input
@@ -205,7 +205,7 @@ const BookingForm = ({className, title}) => {
         <div>
           
           {/* For Additional notes*/}
-          <div className='mx-7 text-area'>
+          <div className='mx-3 text-area'>
             <div className='mt-4'> 
               <label htmlFor="Name" className='text-sm font-semibold block mb-3'>Additional Notes</label>
               <textarea name="" 
@@ -218,7 +218,7 @@ const BookingForm = ({className, title}) => {
             </div>
           </div>
         </div>
-        <button type='submit' className='bg-primary mx-7 mt-5 py-2 pb-3 text-lg font-semibold rounded-xl
+        <button type='submit' className='bg-primary mx-3 mt-5 py-2 pb-3 text-lg font-semibold rounded-xl
          text-white cursor-pointer hover:opacity-[.9]'>
           Book Now
         </button>
