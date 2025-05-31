@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary : #F5871F;
+    --color-secondary : #FFF2E1;
+    --color-ash : #F8F8F8;
+}
+
+header, section, footer {
+    @apply px-[30px] py-[30px] md:px-[50px] lg:px-[70px] lg:py-10 relative
+}
+
+.home-service {
+    @apply hover:-translate-y-1
+}
+.home-service ul{
+    @apply hidden
+}
+.home-booking span,
+.home-booking .text-area{
+    @apply hidden
+}
+.home-booking .personal-info .info,
+.home-booking .schedule .info {
+    @apply grid grid-cols-2 items-center gap-x-5 max-w-full overflow-x-auto
+}
+.service-page {
+    @apply bg-red-300
+}
+.service-page a {
+    @apply hidden
+}
