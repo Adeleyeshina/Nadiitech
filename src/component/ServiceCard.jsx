@@ -18,7 +18,7 @@ const ServiceCard = ({icon, title, content, items, link, className}, index) => {
             {
                 items.map((item, index) =>{
                     return (
-                        <li key={index}>{item}</li>
+                        <li className='list-disc ml-7 marker:text-2xl marker:text-primary' key={index}>{item}</li>
                     )
                 })
             }

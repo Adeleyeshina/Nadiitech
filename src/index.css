@@ -6,7 +6,7 @@
     --color-ash : #F8F8F8;
 }
 
-header, section, footer {
+header, section, footer, main{
     @apply px-[30px] py-[30px] md:px-[50px] lg:px-[70px] lg:py-10 relative
 }
 
@@ -25,7 +25,7 @@ header, section, footer {
     @apply lg:grid lg:grid-cols-2 items-center gap-x-5 max-w-full overflow-x-auto
 }
 .service-page {
-    @apply bg-red-300
+    @apply border-t-7 border-primary
 }
 .service-page a {
     @apply hidden

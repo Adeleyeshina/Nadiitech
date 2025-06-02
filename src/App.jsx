@@ -10,6 +10,7 @@ import Products from './pages/Products'
 import Services from './pages/Services'
 import Cart from './pages/Cart'
 import Footer from './component/Footer'
+import NotFound from "./pages/NotFound"
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/products' element={<Products />}/>
         <Route path='/services' element={<Services />}/>
         <Route path='/cart' element={<Cart />}/>
+        <Route path='*' element={<NotFound />}/>
       </Routes>
       <Footer />
     </div>

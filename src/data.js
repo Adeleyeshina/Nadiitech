@@ -6,6 +6,15 @@ import Avatar1 from './assets/images/avatar-1.jpg'
 import Avatar2 from './assets/images/avatar-2.jpg'
 import Avatar3 from './assets/images/avatar-3.jpg'
 
+import Work1 from './assets/images/work1.webp'
+import Work2 from './assets/images/work2.webp'
+import Work3 from './assets/images/work3.webp'
+import Work4 from './assets/images/work4.webp'
+import Work5 from './assets/images/work5.webp'
+import Work6 from './assets/images/work6.webp'
+import Work7 from './assets/images/work7.webp'
+import Work8 from './assets/images/work8.webp'
+
 
 export const link = [
     {
@@ -132,5 +141,40 @@ export const testimonials = [
         name : "Sarah Williams",
         rating : 4.5,
         reply : "I had an electrical emergency and NadiiTech responded within an hour. The technician was knowledgeable and fixed the issue quickly. Highly recommend!"
+    },
+]
+
+export const workGalleryImg = [
+    {
+        id : 1,
+        img : Work1
+    },
+    {
+        id : 2,
+        img : Work2
+    },
+    {
+        id : 3,
+        img : Work3
+    },
+    {
+        id : 4,
+        img : Work4
+    },
+    {
+        id : 5,
+        img : Work5
+    },
+    {
+        id : 6,
+        img : Work6
+    },
+    {
+        id : 7,
+        img : Work7
+    },
+    {
+        id : 8,
+        img : Work8
     },
 ]
