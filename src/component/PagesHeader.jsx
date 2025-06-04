@@ -7,12 +7,12 @@ const PagesHeader = ({img, page, title, body, ctaText, ctaNav}) => {
   const navigate = useNavigate()
   return (
     <article style={{backgroundImage : `url(${img})`}} className={`min-h-[350px] py-4 bg-no-repeat bg-center grid items-center relative bg-cover`}>   
-      <div className="absolute bg-black/70 text-white w-full grid items-center h-full">
+      <div className="absolute bg-black/60 text-white w-full grid items-center h-full">
         <main>
 
-          <div className='flex gap-2 place-items-center text-lg'>
+          <div className='flex gap-2 items-center text-lg'>
             <p className='cursor-pointer' onClick={() => navigate("/")}>Home</p>
-            <MdOutlineArrowForwardIos className='mt-1'/>
+            <MdOutlineArrowForwardIos className='mt-0.5'/>
             <p className='text-primary'>{page}</p>
           </div>
 

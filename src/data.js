@@ -178,3 +178,54 @@ export const workGalleryImg = [
         img : Work8
     },
 ]
+
+export const teamMembers  = [
+    {
+        id: 1,
+        img : Avatar1,
+        name : "Nirozi Samuel ",
+        position : "Founder & CEO",
+        bio : "With over 15 years of experience in engineering and technology solutions."
+    },
+    {
+        id: 2,
+        img : Avatar2,
+        name : "Osuolale Ifeoluwa ",
+        position : "Chief Technical Officer",
+        bio : "Specializes in innovative engineering solutions and automation systems."
+    },
+    {
+        id: 3,
+        img : Avatar3,
+        name : "Akinbile Semilogo",
+        position : "Head of Operations",
+        bio : "Ensures seamless project execution and client satisfaction."
+    }
+]
+export const faq = [
+    {
+        id: 1,
+        question : "Can i reschedule a booking?",
+        answer : "Yes, you can reschedule your booking by contacting our customer service team at least 1 hours before your scheduled appointment. There's no fee for rescheduling."
+    },
+    {
+        id: 2,
+        question : "How soon will i get response?",
+        answer : "We typically respond to all booking requests within 1-2 business hours. For urgent matters, we prioritize response times and will contact you as soon as possible."
+    },
+    {
+        id: 3,
+        question : "Do you serve my area?",
+        answer : "NADII Technology and Engineering serves most areas in Nigeria with a focus on major cities and surrounding areas. If you're unsure about service availability in your location, please contact us, and we'll let you know."
+    },
+    {
+        id: 4,
+        question : "What payment methods do you accept?",
+        answer : "We accept various payment methods including bank transfers, credit/debit cards, and mobile money. Payment details will be provided after your booking is confirmed."
+    },
+    {
+        id: 5,
+        question : "Do you offer emergency services?",
+        answer : "Yes, we offer emergency services for critical electrical issues. For emergencies, please call our hotline directly instead of using the booking form to ensure the fastest response."
+    },
+]

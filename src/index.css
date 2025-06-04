@@ -20,8 +20,10 @@ header, section, footer, main{
 .home-booking .text-area{
     @apply hidden
 }
-.home-booking .personal-info .info,
-.home-booking .schedule .info {
+.home-booking .personal-info .info, 
+.home-booking .schedule .info,
+.booking-page .personal-info .info,
+.booking-page .schedule .info {
     @apply lg:grid lg:grid-cols-2 items-center gap-x-5 max-w-full overflow-x-auto
 }
 .service-page {
@@ -29,4 +31,7 @@ header, section, footer, main{
 }
 .service-page a {
     @apply hidden
+}
+.booking-page button {
+    @apply w-fit justify-self-center p-3 px-12
 }
