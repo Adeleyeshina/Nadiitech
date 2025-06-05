@@ -17,7 +17,7 @@ const ContactInfo = () => {
   return (
     <section className='pt-10'>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
-            <div className='p-10 shadow'>
+            <div className='p-7 md:p-10 shadow rounded-lg'>
                 <h3 className='font-bold text-[30px] mb-2'>Send Us a Message</h3>
                 <form action={handleSubmit(onSubmit)} className='grid gap-5'>
                     <div>
@@ -76,9 +76,9 @@ const ContactInfo = () => {
                         {errors.subject && <p className='text-red-600 ml-3 italic'>{errors.subject.message}</p>}
                     </div>
 
-                    <div className='mx-3 text-area'>
+                    <div className='text-area'>
                         <div className='mt-4'> 
-                        <label htmlFor="message" className='text-sm font-semibold block mb-3'>Messaage</label>
+                        <label htmlFor="message" className='text-sm font-semibold block mb-3'>Messaage *</label>
                         <textarea name="" 
                         id="" cols="50" 
                         rows={"5"} 
@@ -98,7 +98,7 @@ const ContactInfo = () => {
             </div>
 
             <div>
-                <div className='p-10 shadow'>
+                <div className='p-10 shadow rounded-lg'>
                     <h3 className='font-bold text-[30px] mb-2'>Quick Contact Info</h3>
                     <div className='mt-5 grid gap-5'>
                         <div className='flex items-start gap-5'>
