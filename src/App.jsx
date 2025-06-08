@@ -20,6 +20,7 @@ import Redirect from './pages/Redirect'
 import ResetPassword from './pages/ResetPassword'
 import Activate from './pages/Activate'
 import AdminPage from './pages/AdminPage'
+import Protect from './component/Protect'
 
 
 const App = () => {
@@ -46,7 +47,10 @@ const App = () => {
         <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
         <Route path='/signup' element={!user? <Signup /> : <Navigate to ="/" />}/>
         <Route path='/login' element={!user ? <Login /> : <Navigate to={"/"} />}/>
-        <Route path='/forgot-password' element={<Forget />}/>
+        <Route element={!user ? <Protect /> : <Navigate to={"/"} />}>
+          <Route path='/forgot-password' element={<Forget />}/>
+        </Route>
+
         <Route path='/reset-password' element={<ResetPassword />}/>
         <Route path='/check-email' element={!user? <Redirect /> : <Navigate to={"/"}/>}/>
         <Route path='/activate/:token' element={!user ? <Activate /> : <Navigate to={"/"}/>}/>

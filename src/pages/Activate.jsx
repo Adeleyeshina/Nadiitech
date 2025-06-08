@@ -16,8 +16,6 @@ const Activate = () => {
     const [errors, setErrors] = useState('')
     const hasRun = useRef(false);
     useEffect(() => {
-        checkAuth ()
-        user && navigate("/")
         setStatus('pending')
         if (hasRun.current) return;
         const activateAccount = async () => {
@@ -35,8 +33,7 @@ const Activate = () => {
     hasRun.current = true;
     activateAccount();
   }
-    }, [token, checkAuth])
-  if(checkingAuth) return <LoadingSpinner />
+    }, [token])
      return (
     <aside className='bg-secondary h-screen pt-30 flex flex-col gap-5 p-7'>
       <img src={Logo} alt="NadiiTech" className='w-50 mx-auto' />

@@ -9,17 +9,16 @@ import LoadingSpinner from "../component/LoadingSpinner"
 
 const Login = () => {
   const {register, handleSubmit, formState : {errors}} = useForm()
- const {loading, login, checkAuth, user, checkingAuth} = useUserStore()
+ const {loading, login} = useUserStore()
  const navigate = useNavigate()
 
- useEffect(() => {
-  checkAuth()
- },[checkAuth])
+//  useEffect(() => {
+//   checkAuth()
+//  },[checkAuth])
 
   const onSubmit = async (data) => {
     login(data)
   }
-  if(checkingAuth) return <LoadingSpinner />
   return (
         <aside className='bg-secondary grid justify-center place-items-center py-5 px-3  gap-5 h-screen'>
             <img src={Logo} alt="NadiiTech"  className='w-50'/>

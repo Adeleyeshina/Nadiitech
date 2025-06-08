@@ -12,18 +12,13 @@ const Signup = () => {
   const navigate = useNavigate()
   const {register, handleSubmit, watch, formState : {errors}} = useForm()
 
-  const{signup, loading, user, checkAuth, checkingAuth} = useUserStore()
+  const{signup, loading} = useUserStore()
 
-   useEffect(() => {
-    checkAuth()
-    user && navigate("/")
-   },[checkAuth])
 
   const onSubmit = async (data) => {
     signup({...data, navigate })
   }
     const watchPassword = watch('password')
-      if(checkingAuth) return <LoadingSpinner />
   return (
     <aside className='h-full bg-secondary grid justify-center place-items-center py-5 px-3  gap-5'>
         <img src={Logo} alt="NadiiTech"  className='w-50'/>
