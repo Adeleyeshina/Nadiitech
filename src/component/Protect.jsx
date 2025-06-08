@@ -5,11 +5,17 @@ import { useNavigate } from 'react-router-dom'
 import LoadingSpinner from './LoadingSpinner'
 
 const Protect = () => {
-    const {checkAuth, checkingAuth} = useUserStore()
+    const navigate = useNavigate()
+    const {user, checkAuth, checkingAuth} = useUserStore()
     useEffect(()=> {
         checkAuth()
-    },[checkAuth])
-    
+    },[])
+
+    useEffect(()=> {
+        if(!checkingAuth && user) {
+            navigate("/")
+        }
+    },[user, checkingAuth])
     if(checkingAuth) return <LoadingSpinner />
   return (
     <div>
