@@ -66,7 +66,7 @@ const BookingForm = ({className, title}) => {
                 </div>
                 <div className='col-span-2 mt-4'>
                   <label htmlFor="Email" className='text-sm font-semibold block mb-3'>Email Address (Optional)</label>
-                  <input type="text" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
+                  <input type="email" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
                   placeholder='Enter your email address'
                   {...register("email", {
                     required : false,

@@ -1,8 +1,9 @@
 import React from 'react'
+import LoadingSpinner from '../component/LoadingSpinner'
 
 const Products = () => {
   return (
-    <div>Products</div>
+    <div>Products <LoadingSpinner /></div>
   )
 }
 

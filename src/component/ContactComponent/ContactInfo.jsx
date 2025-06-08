@@ -50,7 +50,7 @@ const ContactInfo = () => {
                     </div>
                     <div>
                         <label htmlFor="email" className='text-sm font-semibold block mb-3'>Email Address (Optional)</label>
-                        <input type="text" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
+                        <input type="email" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
                          placeholder='you@emample.com'
                             {...register("email", {
                                 required : false,

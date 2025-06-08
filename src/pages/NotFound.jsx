@@ -24,7 +24,7 @@ const NotFound = () => {
     return () => clearInterval(timer)
    }, [countDown, navigate])
   return (
-    <div className='text-center flex flex-col place-items-center bg-secondary py-15 '>
+    <div className='text-center flex flex-col place-items-center bg-secondary py-15 px-5'>
         <div className='animate-bounce rounded-full w-fit shadow-xl p-10'>
           <FaPlug fill='#F5871F' size={100}/>
 

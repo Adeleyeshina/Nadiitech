@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
 import NavBar from './component/NavBar'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { useUserStore } from './stores/useUserStore'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Account from './pages/Account'
@@ -13,11 +15,21 @@ import Signup from "./pages/Signup"
 import Login from './pages/Login'
 import Footer from './component/Footer'
 import NotFound from "./pages/NotFound"
+import Forget from './pages/Forget'
+import Redirect from './pages/Redirect'
+import ResetPassword from './pages/ResetPassword'
+import Activate from './pages/Activate'
+import AdminPage from './pages/AdminPage'
 
 
 const App = () => {
   const location = useLocation()
   const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart"].includes(location.pathname)
+  const {user, checkAuth} = useUserStore()
+
+  // useEffect(() => {
+  //   checkAuth()
+  // }, [checkAuth])
   return (
     <div>
       {routesWithNavbar && <NavBar />}
@@ -25,16 +37,22 @@ const App = () => {
         <Route path='/' element={<Home />}/>
         <Route path='/about' element={<About />}/>
         <Route path='/contact' element={<Contact />}/>
-        <Route path='/account' element={<Account />}/>
+        <Route path='/account' element={!user ? <Login /> : <Account/>}/>
+        <Route path='/admin-samuel' element={user?.role ==='admin'? <AdminPage /> : <Login/>}/>
         <Route path='/book' element={<Booking />}/>
         <Route path='/products' element={<Products />}/>
         <Route path='/services' element={<Services />}/>
-        <Route path='/cart' element={<Cart />}/>
-        <Route path='/signup' element={<Signup />}/>
-        <Route path='/login' element={<Login />}/>
+        <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
+        <Route path='/signup' element={!user? <Signup /> : <Navigate to ="/" />}/>
+        <Route path='/login' element={!user ? <Login /> : <Navigate to={"/"} />}/>
+        <Route path='/forgot-password' element={<Forget />}/>
+        <Route path='/reset-password' element={<ResetPassword />}/>
+        <Route path='/check-email' element={!user? <Redirect /> : <Navigate to={"/"}/>}/>
+        <Route path='/activate/:token' element={!user ? <Activate /> : <Navigate to={"/"}/>}/>
         <Route path='*' element={<NotFound />}/>
       </Routes>
       {routesWithNavbar && <Footer />}
+      <Toaster />
     </div>
   )
 }
