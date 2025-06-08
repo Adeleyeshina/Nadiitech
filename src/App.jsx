@@ -27,9 +27,10 @@ const App = () => {
   const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart"].includes(location.pathname)
   const {user, checkAuth} = useUserStore()
 
-  // useEffect(() => {
-  //   checkAuth()
-  // }, [checkAuth])
+//  useEffect(() => {
+//    checkAuth()
+
+// }, [checkAuth])
   return (
     <div>
       {routesWithNavbar && <NavBar />}

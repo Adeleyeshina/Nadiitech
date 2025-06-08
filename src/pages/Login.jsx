@@ -14,7 +14,6 @@ const Login = () => {
 
  useEffect(() => {
   checkAuth()
-  user && navigate("/")
  },[checkAuth])
 
   const onSubmit = async (data) => {
