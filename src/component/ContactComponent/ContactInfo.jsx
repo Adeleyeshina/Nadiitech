@@ -23,7 +23,7 @@ const ContactInfo = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
             <div className='p-7 md:p-10 shadow rounded-lg'>
                 <h3 className='font-bold text-[30px] mb-2'>Send Us a Message</h3>
-                <form action={handleSubmit(onSubmit)} className='grid gap-5'>
+                <form onSubmit={handleSubmit(onSubmit)} className='grid gap-5'>
                     <div>
                         <label htmlFor="name" className='text-sm font-semibold block mb-3'>Full Name *</label>
                         <input type="text" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'

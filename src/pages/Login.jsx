@@ -24,7 +24,7 @@ const Login = () => {
             <img src={Logo} alt="NadiiTech"  className='w-50'/>
             <div className='min-w-[300px] md:min-w-[500px] bg-white mx-auto px-5 py-7 md:p-10 rounded-lg shadow'>
                 <h2 className='font-bold text-[30px] text-center mb-5 text-primary'>Login</h2>
-                <form action={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div>
                     <label htmlFor="email" className='text-sm font-semibold block my-3 text-left'>Email address</label>
                     <input type="email" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
