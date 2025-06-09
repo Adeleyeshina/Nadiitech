@@ -1,10 +1,13 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { FaCalendarAlt, FaTools } from 'react-icons/fa';
+import { FaCalendarAlt, FaTools } from 'react-icons/fa'
+import {ImSpinner3} from 'react-icons/im'
 import { RiAccountCircleFill } from 'react-icons/ri'
-import {serviceList} from '../data'
+import {serviceList} from '../data';
+import {contactStore} from '../stores/contactStore'
 
 const BookingForm = ({className, title}) => {
+
   const {
     register,
     watch,
@@ -14,10 +17,10 @@ const BookingForm = ({className, title}) => {
 
   const selected = watch('service')
   const usersDate = watch('date')
+
+  const {sendBooking, loading} = contactStore()
   const onSubmit = async (data) =>{
-
-
-    alert(JSON.stringify(data))
+    sendBooking(data)
   }
   
   return (
@@ -213,14 +216,21 @@ const BookingForm = ({className, title}) => {
               rows={"5"} 
               placeholder='Tell us more about your requirements...'
               className='w-full rounded-lg border border-gray-400 p-2 outline-primary resize-none'
-              {...register("Additional-notes")}>         
+              {...register("note")}>         
               </textarea>
             </div>
           </div>
         </div>
         <button type='submit' className='bg-primary mx-3 mt-5 py-2 pb-3 text-lg font-semibold rounded-xl
-         text-white cursor-pointer hover:opacity-[.9]'>
-          Book Now
+         text-white cursor-pointer hover:opacity-[.9] disabled:opacity-[.5]' disabled={loading}>
+            {
+          loading ? (
+          <span className="flex gap-4 place-items-center">
+              <ImSpinner3 size={25} className="animate-spin"/>
+              Loading...
+          </span>
+          ) : <span className=''>Book Now</span>
+      }
         </button>
       </form>
     </div>

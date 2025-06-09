@@ -18,4 +18,16 @@ export const contactStore = create((set)=>({
         }
     },
 
+    sendBooking : async (data) => {
+        set({loading : true})
+
+        try {
+            const res = await axios.post("/booking", data)
+            set({loading : false})
+            toast.success(res.data.message)
+        } catch (error) {
+            set({loading : false})
+            toast.error(error.response.message || "An error occured")
+        }
+    }
 }))
