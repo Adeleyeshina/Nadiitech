@@ -2,6 +2,8 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import {Link} from 'react-router-dom'
 import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa'
+import { contactStore } from '../../stores/contactStore'
+import { ImSpinner3 } from 'react-icons/im'
 
 const ContactInfo = () => {
     const {register, handleSubmit, formState : {errors}} = useForm()
@@ -11,8 +13,10 @@ const ContactInfo = () => {
     const address = import.meta.env.VITE_ADDRESS
     const Message = import.meta.VITE_WHATSAPP_MESSAGE
 
+    const {loading, sendMessage} = contactStore()
+
     const onSubmit = async(data) => {
-        alert (JSON.stringify(data))
+        sendMessage(data)
     }
   return (
     <section className='pt-10'>
@@ -93,7 +97,17 @@ const ContactInfo = () => {
           </div>
 
                     <button type='submit' className='bg-primary mx-3 mt-5 py-2 pb-3 text-lg font-semibold rounded-xl
-                    text-white cursor-pointer hover:opacity-[.9] flex justify-center items-center gap-5'><FaPaperPlane/> Send Message</button>
+                    text-white cursor-pointer hover:opacity-[.9] disabled:opacity-[.5] flex justify-center items-center gap-5' 
+                    disabled={loading}>
+                        {
+                                loading ? (
+                                <span className="flex gap-4 place-items-center">
+                                    <ImSpinner3 size={25} className="animate-spin"/>
+                                    Loading...
+                                </span>
+                                ) : <span className='flex justify-center items-center gap-5'><FaPaperPlane className=''/> Send Message</span>
+                            }
+                    </button>
                 </form>
             </div>
 

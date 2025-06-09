@@ -4,7 +4,7 @@ import { useUserStore } from '../stores/useUserStore'
 import { useNavigate } from 'react-router-dom'
 import LoadingSpinner from './LoadingSpinner'
 
-const Protect = () => {
+const RedirectIfAuth = () => {
     const navigate = useNavigate()
     const {user, checkAuth, checkingAuth} = useUserStore()
     useEffect(()=> {
@@ -18,10 +18,8 @@ const Protect = () => {
     },[user, checkingAuth])
     if(checkingAuth) return <LoadingSpinner />
   return (
-    <div>
-        <Outlet />
-    </div>
+    <Outlet />
   )
 }
 
-export default Protect
+export default RedirectIfAuth
