@@ -25,11 +25,17 @@ import AllowIfAuth from './component/AllowIfAuth'
 import AccountInfo from './component/AccountComponent/AccountInfo'
 import Order from './component/AccountComponent/Order'
 import Address from './component/AccountComponent/Address'
+import LoadingSpinner from './component/LoadingSpinner'
 
 const App = () => {
   const location = useLocation()
   const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart", "/account/info", '/account/order', '/account/address'].includes(location.pathname)
-const {user} = useUserStore()
+  const {user, checkAuth, checkingAuth} = useUserStore()
+
+  useEffect(()=> {
+    checkAuth()
+  }, [checkAuth])
+  if (checkingAuth) return <LoadingSpinner/>
   return (
     <div>
       {routesWithNavbar && <NavBar />}
@@ -40,16 +46,14 @@ const {user} = useUserStore()
         <Route path='/book' element={<Booking />}/>
         <Route path='/products' element={<Products />}/>
         <Route path='/services' element={<Services />}/>
-        <Route element={<AllowIfAuth />}>
-          <Route path="/account"element={!user ? <Login /> : <Account/>}>
-            <Route path="info" element={<AccountInfo />}/>
-            <Route path="order" element={<Order />}/>
-            <Route path="address" element={<Address />}/>
-          </Route>
+        <Route path="/account"element={!user ? <Login /> : <Account/>}>
+          <Route path="info" element={<AccountInfo />}/>
+          <Route path="order" element={<Order />}/>
+          <Route path="address" element={<Address />}/>
+        </Route>
           <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
           <Route path='/admin-samuel' element={user?.role ==='admin'? <AdminPage /> : <Navigate to="*" />}/>
-        </Route>
-        <Route element={<RedirectIfAuth />}>
+        <Route element={user &&<Navigate to ="/"/> }>
           <Route path='/login' element={!user? <Login /> : <Navigate to="/" />}/>
           <Route path='/signup' element={!user? <Signup /> : <Navigate to ="/" />}/>
           <Route path='/check-email' element={!user? <Redirect /> : <Navigate to={"/"}/>}/>

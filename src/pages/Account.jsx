@@ -10,7 +10,7 @@ const Account = () => {
   const {user, logout} = useUserStore()
   const navigate = useNavigate()
   useEffect(() => {
-    if (user?.role === 'admin') {
+    if (user?.role ==='admin') {
       navigate("/admin-samuel")
     } 
   }, [])
