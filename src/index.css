@@ -42,3 +42,9 @@ header, section, footer, main{
 .btn {
     @apply  duration-500 font-semibold py-5 px-10 rounded lg:w-fit flex flex-col gap-3 md:flex-row items-center shadow-[0_0_5px_1px_rgba(0,0,0,0.2)]
 }
+table {
+    @apply w-full
+}
+td, th{
+    @apply border p-5 border-collapse text-left overflow-hidden
+}

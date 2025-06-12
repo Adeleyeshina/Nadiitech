@@ -12,6 +12,7 @@ const BookingForm = ({className, title}) => {
     register,
     watch,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -19,8 +20,8 @@ const BookingForm = ({className, title}) => {
   const usersDate = watch('date')
 
   const {sendBooking, loading} = contactStore()
-  const onSubmit = async (data) =>{
-    sendBooking(data)
+  const onSubmit = async (data) =>{ 
+    sendBooking(data, reset)
   }
   
   return (
@@ -225,11 +226,11 @@ const BookingForm = ({className, title}) => {
          text-white cursor-pointer hover:opacity-[.9] disabled:opacity-[.5]' disabled={loading}>
             {
           loading ? (
-          <span className="flex gap-4 place-items-center">
+          <div className="flex gap-4 justify-center">
               <ImSpinner3 size={25} className="animate-spin"/>
               Loading...
-          </span>
-          ) : <span className=''>Book Now</span>
+          </div>
+          ) : <div className=''>Book Now</div>
       }
         </button>
       </form>

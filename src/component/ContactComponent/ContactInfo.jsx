@@ -6,7 +6,7 @@ import { contactStore } from '../../stores/contactStore'
 import { ImSpinner3 } from 'react-icons/im'
 
 const ContactInfo = () => {
-    const {register, handleSubmit, formState : {errors}} = useForm()
+    const {register, handleSubmit, reset, formState : {errors}} = useForm()
     const phone =  import.meta.env.VITE_PHONE_NO
     const whatsappNo = import.meta.env.VITE_WHATSAPP_NO
     const email = import.meta.env.VITE_EMAIL
@@ -16,7 +16,12 @@ const ContactInfo = () => {
     const {loading, sendMessage} = contactStore()
 
     const onSubmit = async(data) => {
-        sendMessage(data)
+        try {
+            await sendMessage(data, reset)
+
+        } catch (error) {
+            console(error)
+        }
     }
   return (
     <section className='pt-10'>

@@ -21,17 +21,15 @@ import ResetPassword from './pages/ResetPassword'
 import Activate from './pages/Activate'
 import AdminPage from './pages/AdminPage'
 import RedirectIfAuth from './component/RedirectIfAuth'
-
+import AllowIfAuth from './component/AllowIfAuth'
+import AccountInfo from './component/AccountComponent/AccountInfo'
+import Order from './component/AccountComponent/Order'
+import Address from './component/AccountComponent/Address'
 
 const App = () => {
   const location = useLocation()
-  const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart"].includes(location.pathname)
-const {user, checkAuth} = useUserStore()
-
-// //  useEffect(() => {
-// //    checkAuth()
-
-// // }, [checkAuth])
+  const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart", "/account/info", '/account/order', '/account/address'].includes(location.pathname)
+const {user} = useUserStore()
   return (
     <div>
       {routesWithNavbar && <NavBar />}
@@ -39,20 +37,26 @@ const {user, checkAuth} = useUserStore()
         <Route path='/' element={<Home />}/>
         <Route path='/about' element={<About />}/>
         <Route path='/contact' element={<Contact />}/>
-        <Route path='/account' element={!user ? <Login /> : <Account/>}/>
         <Route path='/book' element={<Booking />}/>
         <Route path='/products' element={<Products />}/>
         <Route path='/services' element={<Services />}/>
-        <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
+        <Route element={<AllowIfAuth />}>
+          <Route path="/account"element={!user ? <Login /> : <Account/>}>
+            <Route path="info" element={<AccountInfo />}/>
+            <Route path="order" element={<Order />}/>
+            <Route path="address" element={<Address />}/>
+          </Route>
+          <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
+          <Route path='/admin-samuel' element={user?.role ==='admin'? <AdminPage /> : <Navigate to="*" />}/>
+        </Route>
         <Route element={<RedirectIfAuth />}>
           <Route path='/login' element={!user? <Login /> : <Navigate to="/" />}/>
           <Route path='/signup' element={!user? <Signup /> : <Navigate to ="/" />}/>
           <Route path='/check-email' element={!user? <Redirect /> : <Navigate to={"/"}/>}/>
           <Route path='/activate/:token' element={!user ? <Activate /> : <Navigate to={"/"}/>}/>
-          <Route path='/admin-samuel' element={user?.role ==='admin'? <AdminPage /> : <Login/>}/>
+          <Route path='/forgot-password' element={!user? <Forget /> : <Navigate to="/"/>}/>
+          <Route path='/reset-password' element={!user ? <ResetPassword /> : <Navigate to ="/" />}/>
         </Route>
-        <Route path='/forgot-password' element={<Forget />}/>
-        <Route path='/reset-password' element={<ResetPassword />}/>
         <Route path='*' element={<NotFound />}/>
       </Routes>
       {routesWithNavbar && <Footer />}

@@ -40,7 +40,7 @@ const NavBar = () => {
 
         {/* cart and account */}
         <div className='flex gap-5 md:gap-x-10 justify-self-center '>
-            <Link to={"/account"} className=''><FaRegUser fill='#F5871F'size={25} /></Link>
+            <Link to={"/account/info"} className=''><FaRegUser fill='#F5871F'size={25} /></Link>
             <Link to={"/cart"} className='relative'><MdOutlineShoppingCart fill='#F5871F'  size={25}/>
              <span className='absolute top-[-15px] bg-secondary p-1.5 rounded-full '>0</span>
             </Link>
