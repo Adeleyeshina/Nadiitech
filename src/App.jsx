@@ -26,10 +26,18 @@ import AccountInfo from './component/AccountComponent/AccountInfo'
 import Order from './component/AccountComponent/Order'
 import Address from './component/AccountComponent/Address'
 import LoadingSpinner from './component/LoadingSpinner'
+import GetBookings from './component/AdminComponent/GetBookings'
+import CreateProducts from './component/AdminComponent/CreateProducts'
+import AdminOrder from './component/AdminComponent/AdminOrder'
+import AdminProducts from './component/AdminComponent/AdminProducts'
+import ShowBookings from './component/AdminComponent/ShowBookings'
 
 const App = () => {
   const location = useLocation()
-  const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart", "/account/info", '/account/order', '/account/address'].includes(location.pathname)
+  const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart",
+     "/account/info", '/account/order', '/account/address', "/admin-samuel", "/admin-samuel/createproducts",
+     "/admin-samuel/orders", "/admin-samuel/bookings", "/admin-samuel/products", 
+     "/admin-samuel/show-booking/:id"].includes(location.pathname)
   const {user, checkAuth, checkingAuth} = useUserStore()
 
   useEffect(()=> {
@@ -51,8 +59,14 @@ const App = () => {
           <Route path="order" element={<Order />}/>
           <Route path="address" element={<Address />}/>
         </Route>
-          <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
-          <Route path='/admin-samuel' element={user?.role ==='admin'? <AdminPage /> : <Navigate to="*" />}/>
+        <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
+        <Route path='/admin-samuel' element={user?.role ==='admin'? <AdminPage /> : <Navigate to="*" />}>
+          <Route path='createproducts' element={<CreateProducts />}/>
+          <Route path='orders' element={<AdminOrder />}/>
+          <Route path='bookings' element={<GetBookings />}/>
+          <Route path='products' element={<AdminProducts />}/>
+          <Route path='show-booking/:id' element={<ShowBookings />}/>
+        </Route>
         <Route element={user &&<Navigate to ="/"/> }>
           <Route path='/login' element={!user? <Login /> : <Navigate to="/" />}/>
           <Route path='/signup' element={!user? <Signup /> : <Navigate to ="/" />}/>

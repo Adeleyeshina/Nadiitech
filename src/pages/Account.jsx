@@ -11,7 +11,7 @@ const Account = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (user?.role ==='admin') {
-      navigate("/admin-samuel")
+      navigate("/admin-samuel/products")
     } 
   }, [])
   const userRoute = [{path : 'info', name : "Account Info", icon : <FaRegUser size={25}/>},

@@ -1,5 +1,5 @@
-import {MdElectricBolt, MdAutorenew, MdSecurity, MdHomeRepairService} from 'react-icons/md'
-import {FaRobot} from 'react-icons/fa'
+import {MdElectricBolt, MdAutorenew, MdSecurity, MdHomeRepairService, MdViewList} from 'react-icons/md'
+import {FaCalendarCheck, FaHistory, FaRobot} from 'react-icons/fa'
 import {FaMicrochip, FaFireExtinguisher, FaSolarPanel, FaPlugCircleBolt} from 'react-icons/fa6'
 
 import Avatar1 from './assets/images/avatar-1.jpg'
@@ -14,6 +14,7 @@ import Work5 from './assets/images/work5.webp'
 import Work6 from './assets/images/work6.webp'
 import Work7 from './assets/images/work7.webp'
 import Work8 from './assets/images/work8.webp'
+import { AiOutlinePlusSquare } from 'react-icons/ai'
 
 
 export const link = [
@@ -228,4 +229,11 @@ export const faq = [
         question : "Do you offer emergency services?",
         answer : "Yes, we offer emergency services for critical electrical issues. For emergencies, please call our hotline directly instead of using the booking form to ensure the fastest response."
     },
+]
+
+export const  adminRoute = [
+    {path : 'products', name : "All Products", icon : MdViewList },
+    {path : 'createproducts', name : "Create Products", icon : AiOutlinePlusSquare },
+    {path : 'orders', name : "Order History", icon : FaHistory },
+    {path : 'bookings', name : "Booking History", icon : FaCalendarCheck }
 ]
