@@ -145,7 +145,7 @@ const ContactInfo = () => {
                             </button>
                             <div>
                                 <h3 className='font-semibold text-[20px] mb-1'>Email</h3>
-                                <p>{email}</p>
+                                <p className='break-all'>{email}</p>
                             </div>
                         </div>
                         <div className='flex items-start gap-5'>

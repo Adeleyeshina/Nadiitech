@@ -2,9 +2,18 @@ import {MdElectricBolt, MdAutorenew, MdSecurity, MdHomeRepairService, MdViewList
 import {FaCalendarCheck, FaHistory, FaRobot} from 'react-icons/fa'
 import {FaMicrochip, FaFireExtinguisher, FaSolarPanel, FaPlugCircleBolt} from 'react-icons/fa6'
 
-import Avatar1 from './assets/images/avatar-1.jpg'
-import Avatar2 from './assets/images/avatar-2.jpg'
-import Avatar3 from './assets/images/avatar-3.jpg'
+import test1 from './assets/images/test-1.webp'
+import test2 from './assets/images/test-2.webp'
+import test3 from './assets/images/test-3.webp'
+import test4 from './assets/images/test-4.webp'
+import test5 from './assets/images/test-5.webp'
+import test6 from './assets/images/test-6.webp'
+import test7 from './assets/images/test-7.webp'
+
+import team1 from './assets/images/team-1.webp'
+import team2 from './assets/images/team-2.webp'
+import team3 from './assets/images/team-3.webp'
+
 
 import Work1 from './assets/images/work1.webp'
 import Work2 from './assets/images/work2.webp'
@@ -113,37 +122,57 @@ export const serviceList = [
 ] 
 
 export const testimonials = [
-    {
-        id : 1,
-        image : Avatar1,
-        name : "Michael Johnson",
-        rating : 5,
-        reply : "The team at NadiiTech installed our home automation system and we couldn't be happier. Professional, punctual, and the quality of work is outstanding."
-    },
-    {
-        id : 2,
-        image : Avatar2,
-        name : "Sarah Williams",
-        rating : 4.5,
-        reply : "I had an electrical emergency and NadiiTech responded within an hour. The technician was knowledgeable and fixed the issue quickly. Highly recommend!"
-    },
-    {
-        id : 3,
-        image : Avatar3,
-        name : "David Thompson",
-        rating : 5,
-        reply : "We've been using NadiiTech for all our business electrical needs for years. Their industrial panel designs are top-notch and their service is always reliable."
+  {
+    id: 1,
+    image: test1,
+    name: "Engr Felix",
+    rating: 5,
+    reply: "The team at NadiiTech installed our home automation system and we couldn't be happier. Professional, punctual, and the quality of work is outstanding."
+  },
+  {
+    id: 2,
+    image: test2,
+    name: "Mrs Anuoluwapo",
+    rating: 4.5,
+    reply: "I had an electrical emergency and NadiiTech responded within an hour. The technician was knowledgeable and fixed the issue quickly. Highly recommend!"
+  },
+  {
+    id: 3,
+    image: test3,
+    name: "Mrs Jatto Ifelola",
+    rating: 5,
+    reply: "We've been using NadiiTech for all our business electrical needs for years. Their industrial panel designs are top-notch and their service is always reliable."
+  },
+  {
+    id: 4,
+    image: test4,
+    name: "Temi",
+    rating: 4.5,
+    reply: "They installed security lighting around our property. The work was clean and the system works flawlessly. Would use them again!"
+  },
+  {
+    id: 5,
+    image: test5,
+    name: "Mrs Yemisi",
+    rating: 5,
+    reply: "NadiiTech handled our office wiring project excellently. Everything was completed ahead of schedule with great attention to detail."
+  },
+  {
+    id: 6,
+    image: test6,
+    name: "Damilola",
+    rating: 4.5,
+    reply: "Great service! The technician explained everything clearly and ensured our backup generator was set up properly."
+  },
+  {
+    id: 7,
+    image: test7,
+    name: "Elizabeth",
+    rating: 5,
+    reply: "I’m very impressed with their customer service and technical know-how. Highly recommend for residential electrical needs."
+  },
+];
 
-
-    },
-    {
-        id : 4,
-        image : Avatar2,
-        name : "Sarah Williams",
-        rating : 4.5,
-        reply : "I had an electrical emergency and NadiiTech responded within an hour. The technician was knowledgeable and fixed the issue quickly. Highly recommend!"
-    },
-]
 
 export const workGalleryImg = [
     {
@@ -183,24 +212,24 @@ export const workGalleryImg = [
 export const teamMembers  = [
     {
         id: 1,
-        img : Avatar1,
-        name : "Nirozi Samuel ",
+        img : team1,
+        name : "Engr. Nirozi Samuel ",
         position : "Founder & CEO",
-        bio : "With over 15 years of experience in engineering and technology solutions."
+        bio : "Leads the comapany's vision and strategy with over 7 years of experience in engineering and technology solutions."
     },
     {
         id: 2,
-        img : Avatar2,
-        name : "Osuolale Ifeoluwa ",
-        position : "Chief Technical Officer",
-        bio : "Specializes in innovative engineering solutions and automation systems."
+        img : team2,
+        name : "Engr. Emmanuel ",
+        position : "Admin (Technical Supervisor)",
+        bio : "Oversees technical operations and ensures efficient administrative workflows witin the engineering team."
     },
     {
         id: 3,
-        img : Avatar3,
-        name : "Akinbile Semilogo",
-        position : "Head of Operations",
-        bio : "Ensures seamless project execution and client satisfaction."
+        img : team3,
+        name : "Doris Kehinde",
+        position : "Secretary",
+        bio : "Manages documentation, schedules, and internal communications to support seamless organization operations,"
     }
 ]
 export const faq = [

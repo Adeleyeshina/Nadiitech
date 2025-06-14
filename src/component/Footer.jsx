@@ -50,7 +50,7 @@ const Footer = () => {
           <div className='grid gap-2'>
             <p className='flex gap-3 items-center'><FaMapMarkerAlt fill='#F5871F'/>123 Engineering Avenue, Ibadans, Nigeria</p>
             <p className='flex gap-3 items-center'><FaPhoneAlt fill='#F5871F'/>{phoneNo}</p>
-            <p className='flex gap-3 items-center'><FaEnvelope fill='#F5871F'/>info@nadiitech.com</p>
+            <p className='flex gap-3 items-center break-all'><FaEnvelope fill='#F5871F'/>nadiitechnologyandengineering@gmail.com</p>
           </div>
         </div>
       </div>

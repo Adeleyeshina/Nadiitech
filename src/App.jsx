@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import NavBar from './component/NavBar'
 import { useUserStore } from './stores/useUserStore'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
