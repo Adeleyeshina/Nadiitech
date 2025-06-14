@@ -33,7 +33,7 @@ const TestimonialCard = () => {
   }
 
   return (
-    <div className="mt-10 px-4">
+    <div className="mt-10 ">
       <Slider {...settings}>
         {
           testimonials.map(({ id, image, name, rating, reply }) => (
