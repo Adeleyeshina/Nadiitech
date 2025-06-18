@@ -20,7 +20,7 @@ const AdminPage = () => {
 
      
   return (
-        <section className='flex items-start flex-col sm:flex-row gap-5 lg:gap-10 bg-secondary '>
+        <section className='flex items-start flex-col sm:flex-row gap-5 lg:gap-10 bg-secondary'>
           <div className='text-xl font-semibold bg-white p-7 rounded-lg shadow w-full md:flex-1/3 lg:flex-1/4'>
             <div className='grid justify-center text-center'>
               <img src={Icon} alt="" className='mx-auto'/>

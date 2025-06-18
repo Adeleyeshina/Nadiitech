@@ -33,6 +33,7 @@ import CreateProducts from './component/AdminComponent/CreateProducts'
 import AdminOrder from './component/AdminComponent/AdminOrder'
 import AdminProducts from './component/AdminComponent/AdminProducts'
 import ShowBookings from './component/AdminComponent/ShowBookings'
+import ShowProductDetail from './component/productsPageComponent/ShowProductDetail';
 
 const App = () => {
   const location = useLocation()
@@ -56,6 +57,7 @@ const App = () => {
         <Route path='/book' element={<Booking />}/>
         <Route path='/products' element={<Products />}/>
         <Route path='/services' element={<Services />}/>
+        <Route path="products/details/:id" element={<ShowProductDetail /> }/>
         <Route path="/account"element={!user ? <Login /> : <Account/>}>
           <Route path="info" element={<AccountInfo />}/>
           <Route path="order" element={<Order />}/>

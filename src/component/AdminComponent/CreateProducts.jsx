@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { FaUpload } from 'react-icons/fa'
+import { ImSpinner3 } from 'react-icons/im'
+import {IoCloudUploadOutline } from 'react-icons/io5'
+import { useProductStore } from '../../stores/useProductStore'
 
 const CreateProducts = () => {
     const [newProduct, setNewProduct] = useState ({
@@ -9,17 +11,40 @@ const CreateProducts = () => {
         image : ''
     })
     
-    
-    const handleSubmit = (e) => {
+    const {createProduct, loading} = useProductStore()
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        alert(JSON.stringify(newProduct))
+        try {
+            await createProduct(newProduct)
+            setNewProduct({
+                    name : '',
+                    description : '',
+                    price : '',
+                    image : ''
+            })
+        } catch (error) {
+            console.log("error creating a product");
+            
+        }
+        
         
     }
+    const handleImageChange = (e) => {
+        const file = e.target.files [0]
+        if(file) {
+            const reader = new FileReader
+
+            reader.onloadend = () => {
+               setNewProduct({...newProduct, image : reader.result}) 
+            }
+            reader.readAsDataURL(file)
+        }
+    }
   return (
-    <div className='px-5 lg"px-10'>
-        <h2 className='text-2xl md:text-3xl font-bold text-center mb-4 text-primary'>Create New Products</h2>
+    <div className='lg:px-10 overflow-hidden'>
+        <h2 className='text-2xl md:text-3xl  font-bold text-center mb-4 text-primary'>Create New Products</h2>
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='overflow-hidden space-y-4'>
                 <div className='mt-4'> 
                   <label htmlFor="product name" className='text-sm font-semibold block mb-3'>Product Name</label>
                   <input type="text" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
@@ -52,19 +77,28 @@ const CreateProducts = () => {
                   required
                   />
                 </div>
-                {/* <div className='mt-4 flex items-center'> 
-                  <label htmlFor="image" className='text-sm font-semibold block mb-3'>Product Image</label>
-                  <input type="file" id="image" accept='image/*' className='w-full sr-only rounded-lg border border-gray-400 p-2 outline-primary'
-                //   value={newProduct.price}
-                //   onChange={e => setNewProduct({...newProduct, price : e.target.value})}
-                  
+                <div className='mt-4 items-center overflow-hidden'> 
+                  <input required type="file" id="image" accept='image/*' className='sr-only rounded-lg overflow-hidden border border-gray-400 p-2 outline-primary'
+                  onChange={handleImageChange}
                   />
-                  <FaUpload htmlFor="image" />
-                
-                  {newProduct.image && <span className=''>{newProduct.image}</span>}
-                </div> */}
+                <label htmlFor="image" className='text-sm font-semibold block mb-3'>
+                    <IoCloudUploadOutline size={35} className='inline-block mr-3'/>
+                    Upload Image
+                </label>
+                  {newProduct.image && <span className=''>Image Uploaded</span>} 
+                </div>
               
-                <button type='submit'>submit</button>
+            <button className='bg-primary mt-5 text-center px-9 block py-2 pb-3 text-lg font-semibold rounded-xl
+              text-white cursor-pointer hover:opacity-[.9] disabled:opacity-[.5] w-fit mx-auto' disabled={loading}>
+                  {
+                loading ? (
+                <span className="flex gap-4 place-items-center">
+                    <ImSpinner3 size={25} className="animate-spin"/>
+                    Loading...
+                </span>
+                ) : <span  className=''>Create Product</span>
+            }
+            </button>
             </form>
         </div>
     </div>
