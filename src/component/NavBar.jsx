@@ -4,8 +4,10 @@ import {Link, NavLink} from 'react-router-dom'
 import {FaBars, FaRegUser} from 'react-icons/fa'
 import {MdOutlineShoppingCart, MdClose} from 'react-icons/md'
 import {link} from '../data'
+import { useCartStore } from '../stores/useCartStore'
 
 const NavBar = () => {
+    const {cart} = useCartStore()
     const [nav, setNav] = useState(false)
   return (
     <nav className='flex bg-white text-center items-center sticky top-0 z-10 justify-between border-b-4 border-ash px-[30px] py-[30px] md:px-[50px] lg:px-[70px] lg:py-[20px]'>
@@ -42,7 +44,8 @@ const NavBar = () => {
         <div className='flex gap-5 md:gap-x-10 justify-self-center '>
             <Link to={"/account/info"} className=''><FaRegUser fill='#F5871F'size={25} /></Link>
             <Link to={"/cart"} className='relative'><MdOutlineShoppingCart fill='#F5871F'  size={25}/>
-             <span className='absolute top-[-15px] bg-secondary p-2 rounded-full '>0</span> 
+
+            {cart.length>0 && <span className='absolute top-[-15px] bg-secondary px-2 py-0.5 rounded-full '>{cart.length}</span> }
             </Link>
         </div>
     </nav>

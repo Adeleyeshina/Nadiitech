@@ -2,17 +2,20 @@ import React from 'react'
 import {toast} from 'react-hot-toast'
 import { PiShoppingCartLight } from 'react-icons/pi'
 import { useUserStore } from '../stores/useUserStore'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import { useCartStore } from '../stores/useCartStore'
 
 const ProductCard = ({product}) => {
+    const{addToCart} = useCartStore()
+    const navigate = useNavigate()
     const {user} = useUserStore()
     const handleAddToCart = () => {
         if(!user) {
-            toast.error("Please login to add products to cart",{id : 'login'})
+            navigate("/login")
             return
         }
         else {
-            toast.success("Product Added to cart")
+            addToCart(product)
         }
         
     }

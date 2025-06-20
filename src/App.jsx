@@ -34,6 +34,7 @@ import AdminOrder from './component/AdminComponent/AdminOrder'
 import AdminProducts from './component/AdminComponent/AdminProducts'
 import ShowBookings from './component/AdminComponent/ShowBookings'
 import ShowProductDetail from './component/productsPageComponent/ShowProductDetail';
+import { useCartStore } from './stores/useCartStore';
 
 const App = () => {
   const location = useLocation()
@@ -42,10 +43,15 @@ const App = () => {
      "/admin-samuel/orders", "/admin-samuel/bookings", "/admin-samuel/products", 
      "/admin-samuel/show-booking/:id"].includes(location.pathname)
   const {user, checkAuth, checkingAuth} = useUserStore()
-
+    const {getCartItem} = useCartStore()
   useEffect(()=> {
     checkAuth()
   }, [checkAuth])
+
+  useEffect(()=> {
+    getCartItem()
+  },[getCartItem])
+  
   if (checkingAuth) return <LoadingSpinner/>
   return (
     <div>

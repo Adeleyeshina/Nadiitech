@@ -7,10 +7,10 @@ import LoadingSpinner from '../LoadingSpinner'
 import ProductPageCta from './ProductPageCta'
 import { FaArrowLeft, FaCircleCheck } from 'react-icons/fa6'
 import { useUserStore } from '../../stores/useUserStore'
-import {toast} from 'react-hot-toast'
-import ProductCard from '../ProductCard'
+import { useCartStore } from '../../stores/useCartStore'
 
 const ShowProductDetail = () => {
+    const{addToCart} = useCartStore()
     const {id} = useParams()
     const navigate = useNavigate()
     const {getProductDetails, productDetails, loading, recommendedProduct, getRecommendedProduct} = useProductStore()
@@ -21,11 +21,11 @@ const ShowProductDetail = () => {
     const {user} = useUserStore()
     const handleAddToCart = () => {
         if(!user) {
-            toast.error("Please login to add products to cart",{id : 'login'})
-            return
+            navigate("/login")
+            
         }
         else {
-            toast.success("Product Added to cart")
+             addToCart(productDetails)
         }
         
     }

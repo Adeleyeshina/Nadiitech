@@ -20,7 +20,8 @@ const Signup = () => {
   }
     const watchPassword = watch('password')
   return (
-    <aside className='h-full bg-secondary grid justify-center place-items-center py-5 px-3  gap-5'>
+    <aside className="h-full bg-secondary">
+    <div className='h-screen grid justify-center place-items-center py-5 px-3  gap-5'>
         <img src={Logo} alt="NadiiTech"  className='w-50'/>
         <div className='md:min-w-[500px] bg-white mx-auto px-5 py-7 md:p-10 rounded-lg shadow'>
             <h2 className='font-bold text-[30px] text-center mb-5 text-primary'>Create Your Account</h2>
@@ -96,9 +97,11 @@ const Signup = () => {
             </form>
         </div>
 
-        <p className="font-medium text-lg">
+    </div>
+      <p className="font-medium text-lg text-center">
            Already have an account? {" "}
-           <Link to={"/login"} className="text-primary">Login here <FaArrowRight className="inline"/></Link></p>
+           <Link to={"/login"} className="text-primary">Login here <FaArrowRight className="inline"/></Link>
+        </p>
     </aside>
   )
 }
