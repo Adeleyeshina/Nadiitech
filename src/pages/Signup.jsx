@@ -20,7 +20,7 @@ const Signup = () => {
   }
     const watchPassword = watch('password')
   return (
-    <aside className="h-full bg-secondary">
+    <aside className="h-full bg-secondary pb-10">
     <div className='h-screen grid justify-center place-items-center py-5 px-3  gap-5'>
         <img src={Logo} alt="NadiiTech"  className='w-50'/>
         <div className='md:min-w-[500px] bg-white mx-auto px-5 py-7 md:p-10 rounded-lg shadow'>

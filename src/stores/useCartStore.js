@@ -45,6 +45,19 @@ export const useCartStore = create((set, get) => ({
             
         }
     },
+    updateQuantity : async (productId, quantity) => {
+        if(quantity === 0) {
+            get().removeFromCart(productId)
+            return
+        }
+        axios.put(`/cart/${productId}`, {quantity});
+        set((prevState) => ({
+            cart : prevState.cart.map((item) => (item._id === productId ? {...item, quantity} : 
+                item
+            ))
+        }))
+        get().calculateTotal();
+    },
     calculateTotal : () => {
         const {cart} = get()
         const total = cart.reduce((sum, item) =>  sum + item.price * item.quantity, 0)

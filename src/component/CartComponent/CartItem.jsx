@@ -1,56 +1,58 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useCartStore } from '../../stores/useCartStore'
 import { FaMinus, FaPlus, FaTrash } from 'react-icons/fa'
 
 const CartItem = ({item}) => {
     const {removeFromCart, updateQuantity} = useCartStore()
-  return (
-    <section className='rounded-lg border p-4 shadow-sm border-primary'>
-        {/* <div className=" flex space-y-4 md:items-center md:justify-between md:gap-6 md:space-y-0">
-            <div className="shrink-0 md:order-1">
-                <img src={item.image} alt={item.name}
-                 className="h-20 md:32 rounded object-cover" />
-            </div>
-            <label htmlFor="" className="sr-only">Choose quantity:</label>
 
-            <div className="flex items-center justify-between md:order-3 md:justify-end">
-                <div className='flex items-center gap-2'>                
-                    <button
-                    className='inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border
-                     border-primary bg-secondary'
-                     onClick={() => updateQuantity(item._id, item.quantity - 1)}
-                    >
-                        <FaMinus />
-                    </button>
-                    <p>{item.quantity}</p>
-                    <button
-                    className='inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border
-                     border-primary bg-secondary'
-                     onClick={() => updateQuantity(item._id, item.quantity + 1)}
-                    >
-                        <FaPlus />
-                    </button>
-                </div>
-                <div className="text-end md:order-4 md:w-32">
-                    <p className="text-base font-bold text-primary">{item.price}</p>
-                </div>
+    const truncatedDescription = (description) => {
+        const index = description.indexOf('.')
+        if(index !==-1) {
+            return description.substring(0, index + 1)
+        }else {
+            return description
+        }
+    }
+  return (
+    <div className='rounded-lg p-4 shadow-sm border-primary bg-white'>
+
+        <div className="flex flex-col md:flex-row p-3">
+            <div className='w-full md:w-30 p-5 rounded-sm shadow-sm bg-ash text-center'>
+                <img src={item.image} alt={item.image} className='rounded-lg w-30 mx-auto '/>
             </div>
-            <div className="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-                <p className="text-base font-medium text-black">
-                    {item.name}
-                </p>
-                <div className="flex items-center gap-4">
-                    <button className="inline-flex items-center text-sm font-medium 
-                    text-red-500 hover underline"
-                    onClick={() => removeFromCart(item._id)}
-                    >
+            
+            <div className='flex-1 md:pl-7 space-y-3'>
+                {/* Product name */}
+                <div className="flex justify-between">
+                    <h2 className='font-semibold text-xl'>{item.name}</h2>
+                    <button className='text-red-500 text-xl hover:cursor-pointer'
+                    onClick={() => removeFromCart(item._id)}>
                         <FaTrash />
                     </button>
                 </div>
+                {/* Product description */}
+                <div className='pr-7 md:pr-10'>
+                    <p>{truncatedDescription(item.description)}</p>
+                </div>
 
+                {/* Quantity update */}
+                <div className='flex justify-between'>
+                    <div className="flex">
+                        <button className='px-2.5 py-1.5 border border-primary rounded-s-lg'
+                        onClick={() => updateQuantity(item._id, item.quantity - 1)}>
+                            <FaMinus />
+                        </button>
+                        <p className='px-3.5 py-1.5 border border-primary'>{item.quantity}</p>
+                        <button className='px-2.5 py-1.5 border border-primary rounded-e-lg'
+                        onClick={() => updateQuantity(item._id, item.quantity + 1)}>
+                            <FaPlus />
+                        </button>
+                    </div>
+                    <p className='font-semibold text-lg'>₦ {item.price.toLocaleString()}</p>
+                </div>
             </div>
-        </div> */}
-    </section>
+        </div>
+    </div>
   )
 }
 

@@ -49,8 +49,8 @@ const App = () => {
   }, [checkAuth])
 
   useEffect(()=> {
-    getCartItem()
-  },[getCartItem])
+    if (user) getCartItem()
+  },[getCartItem, user])
   
   if (checkingAuth) return <LoadingSpinner/>
   return (
