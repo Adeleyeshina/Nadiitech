@@ -3,8 +3,11 @@ import { useCartStore } from '../../stores/useCartStore'
 import { FaMinus, FaPlus, FaTrash } from 'react-icons/fa'
 
 const CartItem = ({item}) => {
-    const {removeFromCart, updateQuantity} = useCartStore()
+    const {getCartItem, removeFromCart, updateQuantity} = useCartStore()
 
+    useEffect(() => {
+        getCartItem()
+    }, [getCartItem])
     const truncatedDescription = (description) => {
         const index = description.indexOf('.')
         if(index !==-1) {
