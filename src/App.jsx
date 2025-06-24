@@ -34,6 +34,8 @@ import AdminOrder from './component/AdminComponent/AdminOrder'
 import AdminProducts from './component/AdminComponent/AdminProducts'
 import ShowBookings from './component/AdminComponent/ShowBookings'
 import ShowProductDetail from './component/productsPageComponent/ShowProductDetail';
+import Checkout from './component/CartComponent/Checkout';
+import CheckoutSuccess from './component/CartComponent/CheckoutSuccess';
 import { useCartStore } from './stores/useCartStore';
 
 const App = () => {
@@ -41,7 +43,7 @@ const App = () => {
   const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart",
      "/account/info", '/account/order', '/account/address', "/admin-samuel", "/admin-samuel/createproducts",
      "/admin-samuel/orders", "/admin-samuel/bookings", "/admin-samuel/products", 
-     "/admin-samuel/show-booking/:id"].includes(location.pathname)
+     "/admin-samuel/show-booking/:id", "/checkout"].includes(location.pathname)
   const {user, checkAuth, checkingAuth} = useUserStore()
     const {getCartItem} = useCartStore()
   useEffect(()=> {
@@ -70,6 +72,8 @@ const App = () => {
           <Route path="address" element={<Address />}/>
         </Route>
         <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
+        <Route path='/checkout' element={!user ? <Login /> : <Checkout/>}/>
+        <Route path='/checkout-success' element={!user ? <Login /> :<CheckoutSuccess/>}/>
         <Route path='/admin-samuel' element={user?.role ==='admin'? <AdminPage /> : <Navigate to="*" />}>
           <Route path='createproducts' element={<CreateProducts />}/>
           <Route path='orders' element={<AdminOrder />}/>

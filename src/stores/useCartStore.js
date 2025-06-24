@@ -3,6 +3,7 @@ import axios from '../lib/axios'
 import {toast} from 'react-hot-toast'
 
 export const useCartStore = create((set, get) => ({
+    loading : false,
     cart : [],
     total : 0,
     getCartItem : async () => {
@@ -57,6 +58,21 @@ export const useCartStore = create((set, get) => ({
             ))
         }))
         get().calculateTotal();
+    },
+    checkout: async (addressId) => {
+        set({loading : true})
+        try {
+            const res = await axios.post("/payments/initialize", { addressId });
+
+            if (res.data.authorization_url) {
+            window.location.href = res.data.authorization_url;
+            } else {
+            toast.error("No authorization URL received");
+            }
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Checkout failed");
+            set({loading : false})
+        }
     },
     calculateTotal : () => {
         const {cart} = get()

@@ -111,6 +111,11 @@ export const useUserStore = create((set, get) => ({
                 street : ''
             })
             setEditAddress(false)
+            set((prevState) => ({
+                address : prevState.address.map((eachAddress) => {
+                   return eachAddress._id === data._id ? {...res.data} : eachAddress
+            })
+            }))
         } catch (error) {
             toast.error(error.response.data?.message || 'An error occured')
         }

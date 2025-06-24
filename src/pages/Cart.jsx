@@ -18,7 +18,7 @@ const Cart = () => {
 
           <div className='flex flex-col lg:flex-row gap-7 items-start'>
             {/* Cart items */}
-            <div className='lg:flex-2/3 space-y-5'>
+            <div className='lg:flex-2/3 space-y-5 w-full'>
               {
                 cart.map((item) => {
                   return <CartItem key={item._id} item={item}/>
@@ -39,9 +39,9 @@ const Cart = () => {
                 <p>₦{total.toLocaleString()}</p>
               </div>
               <div>
-                <button className='py-3.5 px-7 w-full mt-3 font-semibold text-lg rounded-lg text-white bg-primary'>
+                <Link to={"/checkout"} className='block text-center py-3.5 px-7 w-full mt-3 font-semibold text-lg rounded-lg text-white bg-primary'>
                   Proceed to Checkout
-                </button>
+                </Link>
                 <p className='mt-3 text-center'>or <Link to={"/products"} className='underline'>Continue Shopping</Link></p>
               </div>
             </div>

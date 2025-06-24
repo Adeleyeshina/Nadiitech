@@ -2,15 +2,17 @@ import {ImSpinner3 } from "react-icons/im"
 import Logo from "../assets/images/Logo.png"
 import {useForm} from "react-hook-form"
 import {Link} from 'react-router-dom'
-import { FaArrowRight } from "react-icons/fa"
+import { FaArrowRight, FaEye, FaEyeSlash } from "react-icons/fa"
 import {useUserStore} from '../stores/useUserStore'
 import { useNavigate } from "react-router-dom"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import LoadingSpinner from "../component/LoadingSpinner"
 
 const Signup = () => {
   const navigate = useNavigate()
   const {register, handleSubmit, watch, formState : {errors}} = useForm()
+  const [isPasswordShowing, setPasswordShowing] = useState(false)
+  const [isConfirmShowing, setConfirmShowing] = useState(false)
 
   const{signup, loading} = useUserStore()
 
@@ -28,7 +30,7 @@ const Signup = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label htmlFor="Name" className='text-sm font-semibold block my-3 text-left'>Full Name</label>
-                <input type="text" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
+                <input type='text' className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
                 placeholder="John Doe"
                 {...register("name", {
                   required : "The name is required",
@@ -56,7 +58,8 @@ const Signup = () => {
               </div>
               <div>
                 <label htmlFor="password" className='text-sm font-semibold block my-3 text-left'>Password</label>
-                <input type="password" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
+                <div className="relative">
+                <input type={isPasswordShowing ? 'text' : "password" } className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
                 placeholder="******"
                 {...register("password", {
                   required : "The password in required",
@@ -66,11 +69,18 @@ const Signup = () => {
                   }
                 })}
                 />
+                <span className="absolute top-1/2 -translate-y-1/2 right-3 hover:cursor-pointer" onClick={()=> setPasswordShowing(prev => !prev)}>
+                  {
+                    isPasswordShowing ? <FaEyeSlash /> : <FaEye />
+                  }
+                </span>
+                </div>
                   {errors.password && <p className='text-red-600 ml-3 italic'>{errors.password.message}</p>}
               </div>
               <div>
                 <label htmlFor="confirm-password" className='text-sm font-semibold block my-3 text-left'>Confirm Password</label>
-                <input type="password" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
+                <div className="relative">
+                <input type={isConfirmShowing ? 'text' : "password" } className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
                 placeholder="******"
                 {...register("confirmPassword", {
                   required : "Confirm Password",
@@ -81,6 +91,12 @@ const Signup = () => {
                   }
                 })}
                 />
+                <span className="absolute top-1/2 -translate-y-1/2 right-3 hover:cursor-pointer" onClick={()=>setConfirmShowing(prev => !prev)}>
+                  {
+                    isConfirmShowing ? <FaEyeSlash /> : <FaEye />
+                  }
+                </span>
+                </div>
                   {errors.confirmPassword && <p className='text-red-600 ml-3 italic'>{errors.confirmPassword.message}</p>}
               </div>
                <button className="bg-primary text-white mt-5 grid justify-center disabled:opacity-[.5] text-center w-full py-3 font-semibold rounded-lg text-xl hover:opacity-[.9]" 

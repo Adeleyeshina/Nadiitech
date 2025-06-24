@@ -35,7 +35,7 @@ const Address = () => {
       {
         address?.length > 0 ? 
         (
-          <div className='grid grid-cols-1 overflow-hidden lg:grid-cols-2 gap-5'>
+          <div className='grid grid-cols-1 overflow-hidden lg:grid-cols-2 gap-5 '>
             {
               address?.map((info, index)=> {
                 return <div key={info._id} className='border-2 border-primary rounded-lg shadow'>
