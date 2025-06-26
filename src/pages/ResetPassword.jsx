@@ -1,18 +1,22 @@
 import {ImSpinner3 } from "react-icons/im"
 import Logo from "../assets/images/Logo.png"
 import {useForm} from "react-hook-form"
-import {Link} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 import { FaArrowRight, FaEye, FaEyeSlash } from "react-icons/fa"
 import { useState } from "react"
+import { useUserStore } from "../stores/useUserStore"
 
 const ResetPassword = () => {
-    const loading = false
+    const {resetPassword, loading} = useUserStore()
     const {register, handleSubmit, watch, formState : {errors}} = useForm()
     const [isPasswordShowing, setPasswordShowing] = useState(false)
     const [isConfirmShowing, setConfirmShowing] = useState(false)
+    const {token} = useParams()
+    const navigate = useNavigate()
 
      const onSubmit = async (data) => {
-    alert(JSON.stringify(data))
+      resetPassword(token, data, navigate)
+      
   }
     const watchPassword = watch('password')
   return (
@@ -20,7 +24,7 @@ const ResetPassword = () => {
         <img src={Logo} alt="NadiiTech"  className='w-50'/>
         <div className='min-w-[300px] md:min-w-[500px] bg-white mx-auto px-5 py-7 md:p-10 rounded-lg shadow'>
             <h2 className='font-bold text-[30px] text-center mb-5 text-primary'>Reset Password</h2>
-            <form action={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label htmlFor="password" className='text-sm font-semibold block my-3 text-left'>New Password</label>
                 <div className="relative">

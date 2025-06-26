@@ -24,7 +24,7 @@ const Signup = () => {
   return (
     <aside className="h-full bg-secondary pb-10">
     <div className='h-screen grid justify-center place-items-center py-5 px-3  gap-5'>
-        <img src={Logo} alt="NadiiTech"  className='w-50'/>
+        <Link to={"/"}> <img src={Logo} alt="NadiiTech"  className='w-50'/></Link>
         <div className='md:min-w-[500px] bg-white mx-auto px-5 py-7 md:p-10 rounded-lg shadow'>
             <h2 className='font-bold text-[30px] text-center mb-5 text-primary'>Create Your Account</h2>
             <form onSubmit={handleSubmit(onSubmit)}>

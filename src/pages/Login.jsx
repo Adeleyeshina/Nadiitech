@@ -19,7 +19,7 @@ const Login = () => {
   }
   return (
         <aside className='bg-secondary grid justify-center place-items-center py-5 px-3  gap-5 h-screen'>
-            <img src={Logo} alt="NadiiTech"  className='w-50'/>
+            <Link to={"/"}> <img src={Logo} alt="NadiiTech"  className='w-50'/></Link>
             <div className='min-w-[300px] md:min-w-[500px] bg-white mx-auto px-5 py-7 md:p-10 rounded-lg shadow'>
                 <h2 className='font-bold text-[30px] text-center mb-5 text-primary'>Login</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>

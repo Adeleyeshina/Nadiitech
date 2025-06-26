@@ -87,7 +87,7 @@ const App = () => {
           <Route path='/check-email' element={!user? <Redirect /> : <Navigate to={"/"}/>}/>
           <Route path='/activate/:token' element={!user ? <Activate /> : <Navigate to={"/"}/>}/>
           <Route path='/forgot-password' element={!user? <Forget /> : <Navigate to="/"/>}/>
-          <Route path='/reset-password' element={!user ? <ResetPassword /> : <Navigate to ="/" />}/>
+          <Route path='/reset-password/:token' element={!user ? <ResetPassword /> : <Navigate to ="/" />}/>
         </Route>
         <Route path='*' element={<NotFound />}/>
       </Routes>

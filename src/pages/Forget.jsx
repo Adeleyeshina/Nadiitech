@@ -1,21 +1,24 @@
 import {ImSpinner3 } from "react-icons/im"
 import Logo from "../assets/images/Logo.png"
 import {useForm} from "react-hook-form"
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { FaArrowRight } from "react-icons/fa"
+import { useUserStore } from "../stores/useUserStore"
 
 const Forget = () => {
+    const navigate = useNavigate()
     const {register, handleSubmit, formState : {errors}} = useForm()
-  const loading = false
-   const onSubmit = async (data) => {
-    alert(JSON.stringify(data))
+    const {loading, forgetPassword} = useUserStore()
+
+   const onSubmit = async (email) => {
+        await forgetPassword(email, navigate)
   }
   return (
     <aside className='bg-secondary grid justify-center place-items-center py-5 px-3  gap-5 h-screen'>
-        <img src={Logo} alt="NadiiTech"  className='w-50'/>
+       <Link to={"/"}> <img src={Logo} alt="NadiiTech"  className='w-50'/></Link>
         <div className='min-w-[300px] md:min-w-[500px] bg-white mx-auto px-5 py-7 md:p-10 rounded-lg shadow'>
             <h2 className='font-bold text-[30px] text-center mb-5 text-primary'>Forgot Pasword</h2>
-            <form action={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                 <label htmlFor="email" className='text-sm font-semibold block my-3 text-left'>Email address</label>
                 <input type="email" className='w-full rounded-lg border border-gray-400 p-2 outline-primary'

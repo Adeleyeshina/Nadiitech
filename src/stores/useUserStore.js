@@ -23,7 +23,7 @@ export const useUserStore = create((set, get) => ({
             const res = await axios.post("/auth/signup", {name, email, password});
             set({loading : false})
             toast.success(res.data.message)
-            navigate("/check-email")
+            navigate("/check-email", {state : {type : "signup"}})
         } catch (error) {
             set({loading : false})
         toast.error(error.response.data.message || "An error occured") 
@@ -127,6 +127,31 @@ export const useUserStore = create((set, get) => ({
             set({address : get().address.filter(addr =>addr._id !== id)})
         } catch (error) {
             toast.error(error.response.data?.message || 'An error occured')
+        }
+    },
+    forgetPassword : async (email, navigate) => {
+        set({loading : true})
+        try {
+            const res =await axios.patch("/auth/forget", email)
+            set({loading : false})
+            toast.success(res.data.message)
+            navigate("/check-email", {state : {type : "reset"}})
+        } catch (error) {
+            set({loading : false})
+            toast.error(error.response.data?.message || 'An error occured')
+        }
+    },
+    resetPassword : async (token, {password}, navigate) => {
+        set({loading : true})
+        
+        try {
+            const res = await axios.patch(`/auth/reset/${token}`, {password : password})
+            toast.success(res.data.message)
+             set({loading : false})
+            navigate("/login")
+        } catch (error) {
+            set({loading : false})
+            toast.error(error.response.data?.message || 'An error occured') 
         }
     }
 }))
