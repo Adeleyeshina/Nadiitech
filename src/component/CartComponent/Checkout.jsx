@@ -74,7 +74,7 @@ const Checkout = () => {
                 <p>Total </p>
                 <p>₦{total.toLocaleString()}</p>
               </div>
-            <button className='block text-center py-3.5 px-7 w-full mt-3 place-items-center font-semibold disabled:opacity-[.5] text-lg rounded-lg text-white
+            <button className='block text-center cursor-pointer py-3.5 px-7 w-full mt-3 place-items-center font-semibold disabled:opacity-[.5] text-lg rounded-lg text-white
              bg-primary'
              onClick={handleCheckout}
              disabled={loading}
