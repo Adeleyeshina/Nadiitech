@@ -50,7 +50,7 @@ const AdminPage = () => {
     
     
     
-          <div className='bg-white py-7 px-5 shadow rounded-lg grow w-full md:flex-2/3 flex-3/4 '>
+          <div className='bg-white py-7 shadow rounded-lg grow w-full md:flex-2/3 flex-3/4 '>
             <Outlet />
           </div>
         </section>

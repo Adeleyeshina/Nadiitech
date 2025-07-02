@@ -48,9 +48,9 @@ const Account = () => {
 
 
 
-      <section className='bg-white p-7 shadow rounded-lg grow w-full md:flex-2/3 flex-3/4 '>
+      <div className='bg-white py-7 shadow rounded-lg grow w-full md:flex-2/3 flex-3/4 mx-auto'>
         <Outlet />
-      </section>
+      </div>
     </section>
   )
 }

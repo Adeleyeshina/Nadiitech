@@ -13,7 +13,7 @@ const OrderTable = ({ orders, isAdmin }) => {
   return (
     <article className="w-full">
       <table className="w-full mt-5 text-sm mx-auto">
-        <thead className="bg-secondary">
+        <thead className="bg-primary text-white">
           <tr className=''>
             <th className="text-left  py-2">Order ID</th>
             <th className="hidden lg:table-cell text-left  py-2">Order Date</th>

@@ -41,7 +41,7 @@ const CreateProducts = () => {
         }
     }
   return (
-    <div className='lg:px-10 overflow-hidden'>
+    <div className='lg:px-10 overflow-hidden px-7'>
         <h2 className='text-2xl md:text-3xl  font-bold text-center mb-4 text-primary'>Create New Products</h2>
         <div>
             <form onSubmit={handleSubmit} className='overflow-hidden space-y-4'>

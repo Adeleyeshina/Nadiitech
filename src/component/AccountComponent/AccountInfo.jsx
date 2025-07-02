@@ -20,7 +20,7 @@ const AccountInfo = () => {
     updateInfo(data)
   }
   return (
-    <div className='lg:p-10'>
+    <div className='px-7 lg:p-10'>
         <form onSubmit={handleSubmit(onSubmit)} >
           <div className='bg-white border-b border-gray-300 '>
             <h3 className='font-bold text-xl lg:text-[30px]'>Account Information</h3>

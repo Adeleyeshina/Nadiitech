@@ -31,7 +31,7 @@ const Address = () => {
     }
  if(checkingAuth) return <LoadingSpinner />
   return (
-    <div>
+    <div className="px-7">
       {
         address?.length > 0 ? 
         (
