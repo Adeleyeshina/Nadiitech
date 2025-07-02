@@ -12,7 +12,7 @@ const OrderTable = ({ orders, isAdmin }) => {
 
   return (
     <article className="w-full">
-      <table className="w-full mt-5 text-sm">
+      <table className="w-full mt-5 text-sm mx-auto">
         <thead className="bg-secondary">
           <tr className=''>
             <th className="text-left  py-2">Order ID</th>
@@ -52,13 +52,9 @@ const OrderTable = ({ orders, isAdmin }) => {
                 </span>
               </td>
               <td className="hidden lg:table-cell  py-2 font-semibold whitespace-nowrap">
-                {order.totalAmount.toLocaleString('en-NG', {
-                  style: 'currency',
-                  currency: 'NGN',
-                  minimumFractionDigits: 0,
-                })}
+                {order.totalAmount.toLocaleString()}
               </td>
-              <td className=" py-2">
+              <td className=" py-2 cursor-pointer">
                 <button
                   onClick={() => handleView(order)}
                   className="bg-primary hover:opacity-90 text-white text-xs font-medium px-3 py-1.5 rounded transition"

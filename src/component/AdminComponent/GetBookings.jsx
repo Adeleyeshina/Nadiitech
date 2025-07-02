@@ -14,9 +14,9 @@ const GetBookings = () => {
     <div>
         <h2 className='text-2xl md:text-3xl font-bold text-center mb-4 text-primary'>All Bookings</h2>
         
-        <table className='min-w-full'>
-            <thead className='mt-5 bg-primary text-white'>
-                <tr className=''>
+        <table className='min-w-full overflow-hidden'>
+            <thead className='mt-5 bg-primary text-white '>
+                <tr className='overflow-hidden'>
                     <th className=''>No</th>
                     <th className='hidden lg:table-cell'>Name</th>
                     <th className='hidden lg:table-cell'>Phone</th>

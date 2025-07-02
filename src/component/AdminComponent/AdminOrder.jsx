@@ -23,7 +23,7 @@ const AdminOrder = () => {
   if (loading) return <p className="text-center py-10 font-semibold">Loading...</p>;
 
   return (
-    <div className="px-4 md:px-8">
+    <div className="md:px-8">
       <h2 className="text-2xl md:text-3xl font-bold text-center">All Orders (Admin)</h2>
 
       {orders.length > 0 ? (
