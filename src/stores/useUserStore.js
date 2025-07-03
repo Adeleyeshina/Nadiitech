@@ -57,7 +57,6 @@ export const useUserStore = create((set, get) => ({
         try {
             const res = await axios.get("/auth/profile")
             set({user : res.data, checkingAuth : false})
-            console.log(res.data);
         } catch (error) {
             set({user : null, checkingAuth : false})
             console.log(error.response.data);
@@ -98,7 +97,7 @@ export const useUserStore = create((set, get) => ({
             reset()
         } catch (error) {
             set({loading : false})
-            toast.error(error.response.data?.message || 'An Error occured')
+            toast.error(error.response?.data?.message || 'An Error occured')
             
         }
     },
@@ -117,7 +116,7 @@ export const useUserStore = create((set, get) => ({
             })
             }))
         } catch (error) {
-            toast.error(error.response.data?.message || 'An error occured')
+            toast.error(error.response?.data?.message || 'An error occured')
         }
     },
     deleteAddress : async(id) => {
@@ -138,7 +137,7 @@ export const useUserStore = create((set, get) => ({
             navigate("/check-email", {state : {type : "reset"}})
         } catch (error) {
             set({loading : false})
-            toast.error(error.response.data?.message || 'An error occured')
+            toast.error(error.response?.data?.message || 'An error occured')
         }
     },
     resetPassword : async (token, {password}, navigate) => {
@@ -151,7 +150,51 @@ export const useUserStore = create((set, get) => ({
             navigate("/login")
         } catch (error) {
             set({loading : false})
-            toast.error(error.response.data?.message || 'An error occured') 
+            toast.error(error.response?.data?.message || 'An error occured') 
+        }
+    },
+    refreshToken : async () => {
+        if(get().checkingAuth) return
+        set({checkingAuth : true})
+
+        try {
+            const response = await axios.post("/auth/refresh-token")
+            set({checkingAuth : false})
+            console.log(response.data)
+            return response.data
+            
+        } catch (error) {
+            set({user : null, checkingAuth : false})
+            throw error;
         }
     }
 }))
+
+
+let refreshPromise = null;
+axios.interceptors.response.use(
+    (response) => response,
+    async(error) => {
+        const originalRequest = error.config
+        if(error.response?.status === 401 && !originalRequest._retry){
+            originalRequest._retry = true
+
+            try {
+                if(refreshPromise) {
+                    await refreshPromise;
+                    return axios(originalRequest)
+                }
+
+                refreshPromise = useUserStore.getState().refreshToken()
+                await refreshPromise;
+                refreshPromise = null
+
+                return axios(originalRequest)
+            } catch (error) {
+                useUserStore.getState().logout()
+                return Promise.reject(error)
+            }
+        }
+        return Promise.reject(error)
+    }
+)

@@ -8,7 +8,8 @@ const CreateProducts = () => {
         name : '',
         description : '',
         price : '',
-        image : ''
+        featuredImage : '',
+        images : []
     })
     
     const {createProduct, loading} = useProductStore()
@@ -20,7 +21,8 @@ const CreateProducts = () => {
                     name : '',
                     description : '',
                     price : '',
-                    image : ''
+                    featuredImage : '',
+                    images : []
             })
         } catch (error) {
             console.log("error creating a product");
@@ -29,17 +31,30 @@ const CreateProducts = () => {
         
         
     }
-    const handleImageChange = (e) => {
-        const file = e.target.files [0]
-        if(file) {
-            const reader = new FileReader
-
-            reader.onloadend = () => {
-               setNewProduct({...newProduct, image : reader.result}) 
-            }
-            reader.readAsDataURL(file)
+    const handleFeaturedImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => setNewProduct(prev => ({ ...prev, featuredImage: reader.result }));
+            reader.readAsDataURL(file);
         }
-    }
+    };
+
+    const handleImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    const promises = files.map(file => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    });
+    Promise.all(promises).then(images => {
+        setNewProduct(prev => ({ ...prev, images }));
+    });
+};
+
   return (
     <div className='lg:px-10 overflow-hidden px-7'>
         <h2 className='text-2xl md:text-3xl  font-bold text-center mb-4 text-primary'>Create New Products</h2>
@@ -77,16 +92,43 @@ const CreateProducts = () => {
                   required
                   />
                 </div>
-                <div className='mt-4 items-center overflow-hidden'> 
-                  <input required type="file" id="image" accept='image/*' className='sr-only rounded-lg overflow-hidden border border-gray-400 p-2 outline-primary'
-                  onChange={handleImageChange}
+                  {/* Featured image upload */}
+                <div className="mt-4 items-center overflow-hidden">
+                  <input
+                    required
+                    type="file"
+                    id="featuredImage"
+                    accept="image/*"
+                    className="sr-only"
+                    onChange={handleFeaturedImageChange}
                   />
-                <label htmlFor="image" className='text-sm font-semibold block mb-3'>
-                    <IoCloudUploadOutline size={35} className='inline-block mr-3'/>
-                    Upload Image
-                </label>
-                  {newProduct.image && <span className=''>Image Uploaded</span>} 
+                  <label htmlFor="featuredImage" className="text-sm font-semibold block mb-3">
+                    <IoCloudUploadOutline size={35} className="inline-block mr-3"/>
+                    Upload Featured Image
+                  </label>
+                  {newProduct.featuredImage && <span>Featured image uploaded</span>}
                 </div>
+
+                {/* Additional images upload */}
+                <div className="mt-4 items-center overflow-hidden">
+                  <input
+                    multiple
+                    required
+                    type="file"
+                    id="images"
+                    accept="image/*"
+                    className="sr-only"
+                    onChange={handleImagesChange}
+                  />
+                  <label htmlFor="images" className="text-sm font-semibold block mb-3">
+                    <IoCloudUploadOutline size={35} className="inline-block mr-3"/>
+                    Upload Other Images
+                  </label>
+                 {newProduct.images?.length > 0 && (<span>{newProduct.images.length} image(s) uploaded</span>
+)}
+
+                </div>
+
               
             <button className='bg-primary mt-5 text-center px-9 block py-2 pb-3 text-lg font-semibold rounded-xl
               text-white cursor-pointer hover:opacity-[.9] disabled:opacity-[.5] w-fit mx-auto' disabled={loading}>

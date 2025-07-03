@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useProductStore } from '../../stores/useProductStore'
-import { MdStar } from 'react-icons/md'
-import { FaTrash } from 'react-icons/fa'
+import { MdBlock, MdStar } from 'react-icons/md'
+import { FaCheckCircle, FaTrash } from 'react-icons/fa'
 
 const AdminProducts = () => {
-    const {deleteProduct, toggleFeaturedProduct,fetchAllProducts, products} = useProductStore()
+    const {deleteProduct, toggleFeaturedProduct,fetchAllProducts, toggleSoldOut, products} = useProductStore()
     useEffect(() => {
         fetchAllProducts()
     },[fetchAllProducts])
@@ -19,7 +19,8 @@ const AdminProducts = () => {
                     <th className=''>Product</th>
                     <th className='hidden lg:table-cell'>Price</th>
                     <th>Featured</th>
-                    <th>Action</th>
+                    <th>Available</th>
+                    <th className='hidden lg:table-cell'>Action</th>
                 </tr>
             </thead>
 
@@ -29,10 +30,10 @@ const AdminProducts = () => {
                         return (
                             <tr key={product._id}>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="flex items-center">
+                                    <div className="flex place-items-center justify-center">
                                         <div className="flex-shrink-0 h-10 w-10">
                                             <img 
-                                            src={product.image} 
+                                            src={product?.featuredImage} 
                                             alt={product.name} 
                                             className='h-10 w-10 rounded-full object-cover'
                                             />
@@ -43,7 +44,7 @@ const AdminProducts = () => {
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
-                                    <div className="text-sm">{product.price.toLocaleString()}</div>
+                                    <div className="text-sm">₦{product.price.toLocaleString()}</div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                      <button
@@ -54,7 +55,17 @@ const AdminProducts = () => {
                                         <MdStar size={30} className='hover:cursor-pointer'/>
                                      </button>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap font-medium">
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                     <button
+                                        onClick={() => toggleSoldOut(product._id)}
+                                        className='cursor-pointer hover:opacity-[.7]'
+                                     >
+                                        {
+                                            product.soldOut ? <MdBlock size={34} fill='red'/> : <FaCheckCircle size={34} fill='green'/>
+                                        }
+                                     </button>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap font-medium hidden lg:table-cell">
                                      <button
                                         onClick={() => deleteProduct(product._id)}
                                         className='text-red-500'

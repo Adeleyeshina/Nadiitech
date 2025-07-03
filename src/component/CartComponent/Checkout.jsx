@@ -58,7 +58,7 @@ const Checkout = () => {
                 <div className='flex justify-between' key={item._id}> 
                   
                   <div className='flex gap-5 mr-5'>
-                    <img src={item.image} alt={item.name} className='w-15'/>
+                    <img src={item.featuredImage} alt={item.name} className='w-15'/>
                     <div className=''>
                       <h3 className='text-xl font-semibold'>{item.name}</h3>
                       <p className='font-normal'>Qty: {item.quantity}</p>

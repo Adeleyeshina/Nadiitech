@@ -71,7 +71,7 @@ const OrderModal = ({ order, onClose, isAdmin }) => {
               {order.products.map((item, idx) => (
                 <div key={item._id || idx} className="flex items-center gap-3">
                   <img
-                    src={item.product.image}
+                    src={item.product?.featuredImage}
                     alt={item.product.name}
                     className="w-16 h-16 object-cover rounded border"
                   />

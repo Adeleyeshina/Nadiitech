@@ -21,7 +21,7 @@ const CartItem = ({item}) => {
 
         <div className="flex flex-col md:flex-row p-3">
             <div className='w-full md:w-30 p-5 rounded-sm shadow-sm bg-ash text-center'>
-                <img src={item.image} alt={item.image} className='rounded-lg w-30 mx-auto '/>
+                <img src={item.featuredImage} alt={item.name} className='rounded-lg w-30 mx-auto '/>
             </div>
             
             <div className='flex-1 md:pl-7 space-y-3'>
