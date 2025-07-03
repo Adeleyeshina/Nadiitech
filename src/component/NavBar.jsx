@@ -23,7 +23,7 @@ const NavBar = () => {
         <div className='bg-black/85 fixed w-full h-screen top-0 z-10 left-0'></div> }
 
         {/* Navlinks */}
-        <div className={`flex pl-10 pt-20 bg-primary duration-700 z-20 fixed top-0  w-[80%] h-screen lg:static lg:h-fit lg:pl-0 lg:w-fit lg:grow lg:justify-center lg:bg-transparent lg:pt-0 ${nav ? "left-0" : "left-[-80%]"}`}>
+        <div className={`flex pl-10 pt-20 bg-primary duration-700 z-50 fixed top-0  w-[80%] h-screen lg:static lg:h-fit lg:pl-0 lg:w-fit lg:grow lg:justify-center lg:bg-transparent lg:pt-0 ${nav ? "left-0" : "left-[-80%]"}`}>
            {/* Close menuu */}
             <button className='block lg:hidden absolute top-3 right-5 cursor-pointer' onClick={()=>setNav(false)}>
                 <MdClose fill='white' size={40}/>

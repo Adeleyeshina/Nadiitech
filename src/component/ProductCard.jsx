@@ -39,12 +39,12 @@ const ProductCard = ({ product }) => {
                 <div>
                     <img src={product?.featuredImage} alt={product.name} className='h-[200px] overflow-hidden object-cover w-full rounded-t-lg ' />
                     <div className='px-5'>
-                        <h3 className='font-bold text-[1.2rem]'>{product.name}</h3>
+                        <h3 className='font-bold text-[1.2rem] mt-3'>{product.name}</h3>
                         <p className='text-sm hover:underline transition duration-700'>{truncatedDescription(product.description)}</p>
                     </div>
                 </div>
             </Link>
-            <div className='px-5 pb-7'>
+            <div className='px-5 pb-7 '>
                 <p className='font-semibold mb-3 text-2xl'>
                     ₦
                     {product.price.toLocaleString()}
