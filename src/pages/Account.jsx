@@ -19,7 +19,7 @@ const Account = () => {
     
   return (
 
-    <section className='flex items-start flex-col sm:flex-row gap-5 lg:gap-10 bg-ash '>
+    <section className='flex items-start flex-col sm:flex-row gap-5 lg:gap-10 bg-ash overflow-x-hidden'>
       <div className='text-xl font-semibold bg-white p-7 rounded-lg shadow w-full md:flex-1/3 lg:flex-1/4'>
         <div className='grid justify-center text-center'>
           <img src={Icon} alt="" className='mx-auto'/>
@@ -48,7 +48,7 @@ const Account = () => {
 
 
 
-      <div className='bg-white py-7 shadow rounded-lg grow w-full md:flex-2/3 flex-3/4 mx-auto'>
+      <div className='bg-white py-7 shadow rounded-lg grow w-full md:flex-2/3 flex-3/4 '>
         <Outlet />
       </div>
     </section>

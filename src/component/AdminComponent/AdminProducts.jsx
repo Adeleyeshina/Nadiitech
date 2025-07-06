@@ -11,13 +11,13 @@ const AdminProducts = () => {
     return (
         <div className=''>
             <h2 className='text-2xl md:text-3xl font-bold text-center mb-4 text-primary'>All Products</h2>
-            <div className='overflow-x-auto'>
-                <table className='table-auto'>
+            <div className='overflow-x-auto w-full'>
+                <table className='table-auto'> 
 
                     <thead className='mt-5 bg-primary text-white'>
                         <tr className=''>
                             <th className=''>Product</th>
-                            <th className=''>Price</th>
+                            <th className='sm:hidden lg:table-cell'>Price</th>
                             <th>Featured</th>
                             <th>Available</th>
                             <th className=''>Action</th>
@@ -38,13 +38,13 @@ const AdminProducts = () => {
                                                         className='h-10 w-10 rounded-full object-cover'
                                                     />
                                                 </div>
-                                                <div className="ml-4 ">
+                                                <div className="ml-4 sm:hidden">
                                                     <div className="text-sm font-medium">{product.name}</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="text-sm">₦{product.price.toLocaleString()}</div>
+                                        <td className="px-6 py-4 whitespace-nowrap sm:hidden lg:table-cell">
+                                            <div className="text-sm ">₦{product.price.toLocaleString()}</div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <button
