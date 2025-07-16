@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react'
 import { useProductStore } from '../../stores/useProductStore'
-import { MdBlock, MdStar } from 'react-icons/md'
+import { MdBlock, MdEdit, MdStar } from 'react-icons/md'
 import { FaCheckCircle, FaTrash } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 const AdminProducts = () => {
     const { deleteProduct, toggleFeaturedProduct, fetchAllProducts, toggleSoldOut, products } = useProductStore()
+    const navigate = useNavigate()
     useEffect(() => {
         fetchAllProducts()
     }, [fetchAllProducts])
     return (
-        <div className=''>
+        <div className='w-full relative'>
             <h2 className='text-2xl md:text-3xl font-bold text-center mb-4 text-primary'>All Products</h2>
-            <div className='overflow-x-auto w-full'>
-                <table className='table-auto'> 
+            <div className='overflow-x-auto  lg:overflow-visible'>
+                <table className='lg:min-w-full table-auto'> 
 
                     <thead className='mt-5 bg-primary text-white'>
                         <tr className=''>
@@ -20,7 +22,8 @@ const AdminProducts = () => {
                             <th className='sm:hidden lg:table-cell'>Price</th>
                             <th>Featured</th>
                             <th>Available</th>
-                            <th className=''>Action</th>
+                            <th>Edit</th>
+                            <th className='sm:hidden lg:table-cell'>Action</th>
                         </tr>
                     </thead>
 
@@ -66,6 +69,14 @@ const AdminProducts = () => {
                                             </button>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap font-medium">
+                                            <button
+                                                onClick={() => navigate(`/admin-samuel/updateproduct/${product._id}`)}
+                                                className='text-yellow-500'
+                                            >
+                                                <MdEdit size={30} className='hover:cursor-pointer' />
+                                            </button>
+                                        </td>
+                                        <td className="px-6 py-4 sm:hidden lg:table-cell whitespace-nowrap font-medium">
                                             <button
                                                 onClick={() => deleteProduct(product._id)}
                                                 className='text-red-500'

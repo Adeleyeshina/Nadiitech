@@ -36,6 +36,7 @@ import ShowBookings from './component/AdminComponent/ShowBookings'
 import ShowProductDetail from './component/productsPageComponent/ShowProductDetail';
 import Checkout from './component/CartComponent/Checkout';
 import CheckoutSuccess from './component/CartComponent/CheckoutSuccess';
+import AdminUPdateProduct from './component/AdminComponent/AdminUPdateProduct';
 import { useCartStore } from './stores/useCartStore';
 
 const App = () => {
@@ -80,6 +81,7 @@ const App = () => {
           <Route path='bookings' element={<GetBookings />}/>
           <Route path='products' element={<AdminProducts />}/>
           <Route path='show-booking/:id' element={<ShowBookings />}/>
+          <Route path='updateproduct/:id' element={<AdminUPdateProduct />}/>
         </Route>
         <Route element={user &&<Navigate to ="/"/> }>
           <Route path='/login' element={!user? <Login /> : <Navigate to="/" />}/>

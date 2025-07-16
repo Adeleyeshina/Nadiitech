@@ -99,6 +99,24 @@ export const useProductStore = create((set) => ({
             toast.error(error.response.data?.message || 'Failed to update product')
         }
     },
+    updateProduct: async (productId, updatedData) => {
+    set({ loading: true });
+    try {
+        const res = await axios.put(`/products/update/${productId}`, updatedData);
+
+        set((state) => ({
+            products: state.products.map((product) =>
+                product._id === productId ? res.data : product
+            ),
+            productDetails: res.data, // also update details if being viewed
+            loading: false,
+        }));
+        toast.success("Product updated successfully");
+        } catch (error) {
+            set({ loading: false });
+            toast.error(error.response?.data?.message || "Failed to update product");
+        }
+    },
     getFeaturedProduct: async () => {
         set({ loading: true })
         try {

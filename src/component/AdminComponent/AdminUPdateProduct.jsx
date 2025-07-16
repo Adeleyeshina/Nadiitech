@@ -1,33 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { ImSpinner3 } from 'react-icons/im'
 import { IoCloudUploadOutline } from 'react-icons/io5'
 import { useProductStore } from '../../stores/useProductStore'
 
-const CreateProducts = () => {
-  const [newProduct, setNewProduct] = useState({
+const AdminUpdateProduct = () => {
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const {
+    getProductDetails,
+    productDetails,
+    updateProduct,
+    loading,
+  } = useProductStore()
+
+  const [updatedProduct, setUpdatedProduct] = useState({
     name: '',
     description: '',
     price: '',
     featuredImage: '',
-    images: [],
+    images: []
   })
 
-  const { createProduct, loading } = useProductStore()
+  useEffect(() => {
+    getProductDetails(id, navigate)
+  }, [id, getProductDetails, navigate])
+
+  useEffect(() => {
+    if (productDetails) {
+      setUpdatedProduct({
+        name: productDetails.name || '',
+        description: productDetails.description || '',
+        price: productDetails.price || '',
+        featuredImage: productDetails.featuredImage || '',
+        images: productDetails.images || [],
+      })
+    }
+  }, [productDetails])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      await createProduct(newProduct)
-      setNewProduct({
-        name: '',
-        description: '',
-        price: '',
-        featuredImage: '',
-        images: [],
-      })
-    } catch (error) {
-      console.log('Error creating a product:', error)
-    }
+    await updateProduct(id, updatedProduct)
   }
 
   const handleFeaturedImageChange = (e) => {
@@ -35,7 +48,7 @@ const CreateProducts = () => {
     if (file) {
       const reader = new FileReader()
       reader.onloadend = () =>
-        setNewProduct((prev) => ({ ...prev, featuredImage: reader.result }))
+        setUpdatedProduct((prev) => ({ ...prev, featuredImage: reader.result }))
       reader.readAsDataURL(file)
     }
   }
@@ -50,66 +63,57 @@ const CreateProducts = () => {
         reader.readAsDataURL(file)
       })
     })
-
     Promise.all(promises).then((images) => {
-      setNewProduct((prev) => ({ ...prev, images }))
+      setUpdatedProduct((prev) => ({ ...prev, images }))
     })
   }
 
   return (
     <div className='lg:px-10 overflow-hidden px-7'>
       <h2 className='text-2xl md:text-3xl font-bold text-center mb-4 text-primary'>
-        Create New Products
+        Update Product
       </h2>
       <form onSubmit={handleSubmit} className='overflow-hidden space-y-4'>
-        {/* Product Name */}
         <div className='mt-4'>
           <label className='text-sm font-semibold block mb-3'>Product Name</label>
           <input
             type='text'
             className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
             placeholder='Enter product name'
-            value={newProduct.name}
-            onChange={(e) =>
-              setNewProduct({ ...newProduct, name: e.target.value })
-            }
+            value={updatedProduct.name}
+            onChange={(e) => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}
             required
           />
         </div>
 
-        {/* Description */}
         <div className='mt-4'>
           <label className='text-sm font-semibold block mb-3'>Description</label>
           <textarea
             rows='3'
             className='w-full rounded-lg border border-gray-400 p-2 outline-primary resize-none'
             placeholder='Enter the product description'
-            value={newProduct.description}
+            value={updatedProduct.description}
             onChange={(e) =>
-              setNewProduct({ ...newProduct, description: e.target.value })
+              setUpdatedProduct({ ...updatedProduct, description: e.target.value })
             }
           />
         </div>
 
-        {/* Price */}
         <div className='mt-4'>
           <label className='text-sm font-semibold block mb-3'>Price</label>
           <input
             type='text'
             className='w-full rounded-lg border border-gray-400 p-2 outline-primary'
             placeholder='Enter the product price'
-            value={newProduct.price}
-            onChange={(e) =>
-              setNewProduct({ ...newProduct, price: e.target.value })
-            }
+            value={updatedProduct.price}
+            onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
             required
           />
         </div>
 
-        {/* Featured Image Upload */}
+        {/* Featured image */}
         <div className='mt-4'>
           <input
-            required
             type='file'
             id='featuredImage'
             accept='image/*'
@@ -117,51 +121,47 @@ const CreateProducts = () => {
             onChange={handleFeaturedImageChange}
           />
           <label htmlFor='featuredImage' className='text-sm font-semibold block mb-3'>
-            <IoCloudUploadOutline size={25} className='inline-block mr-2' />
-            Upload Featured Image
+            <IoCloudUploadOutline size={35} className='inline-block mr-3' />
+            Upload New Featured Image
           </label>
-          {newProduct.featuredImage && (
-            <div className='flex flex-wrap gap-3 mt-2'>
-              <img
-                src={newProduct.featuredImage}
-                alt='Featured Preview'
-                className='w-20 h-20 object-cover rounded-md border'
-              />
-            </div>
+          {updatedProduct.featuredImage && (
+            <img
+              src={updatedProduct.featuredImage}
+              alt='Featured'
+              className='w-28 h-28 object-cover rounded-md border'
+            />
           )}
         </div>
 
-        {/* Additional Images Upload */}
+        {/* Other images */}
         <div className='mt-4'>
           <input
-            multiple
-            required
             type='file'
             id='images'
             accept='image/*'
+            multiple
             className='sr-only'
             onChange={handleImagesChange}
           />
           <label htmlFor='images' className='text-sm font-semibold block mb-3'>
-            <IoCloudUploadOutline size={25} className='inline-block mr-2' />
-            Upload Other Images
+            <IoCloudUploadOutline size={35} className='inline-block mr-3' />
+            Upload New Additional Images
           </label>
 
-          {newProduct.images?.length > 0 && (
-            <div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mt-2'>
-              {newProduct.images.map((img, index) => (
+          {updatedProduct.images?.length > 0 && (
+            <div className='grid grid-cols-3 gap-3 mt-2'>
+              {updatedProduct.images.map((img, index) => (
                 <img
                   key={index}
                   src={img}
-                  alt={`Uploaded ${index}`}
-                  className='w-20 h-20 object-cover rounded-md border'
+                  alt={`Preview ${index}`}
+                  className='w-24 h-24 object-cover rounded-md border'
                 />
               ))}
             </div>
           )}
         </div>
 
-        {/* Submit Button */}
         <button
           className='bg-primary mt-5 text-center px-9 block py-2 pb-3 text-lg font-semibold rounded-xl
           text-white cursor-pointer hover:opacity-[.9] disabled:opacity-[.5] w-fit mx-auto'
@@ -170,10 +170,10 @@ const CreateProducts = () => {
           {loading ? (
             <span className='flex gap-4 place-items-center'>
               <ImSpinner3 size={25} className='animate-spin' />
-              Loading...
+              Updating...
             </span>
           ) : (
-            <span>Create Product</span>
+            'Update Product'
           )}
         </button>
       </form>
@@ -181,4 +181,4 @@ const CreateProducts = () => {
   )
 }
 
-export default CreateProducts
+export default AdminUpdateProduct
