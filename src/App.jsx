@@ -38,60 +38,62 @@ import Checkout from './component/CartComponent/Checkout';
 import CheckoutSuccess from './component/CartComponent/CheckoutSuccess';
 import AdminUPdateProduct from './component/AdminComponent/AdminUPdateProduct';
 import { useCartStore } from './stores/useCartStore';
+import AdminEvents from './component/AdminComponent/AdminEvents';
 
 const App = () => {
   const location = useLocation()
-  const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book","/products", "/services", "/cart",
-     "/account/info", '/account/order', '/account/address', "/admin-samuel", "/admin-samuel/createproducts",
-     "/admin-samuel/orders", "/admin-samuel/bookings", "/admin-samuel/products", 
-     "/admin-samuel/show-booking/:id", "/checkout"].includes(location.pathname)
-  const {user, checkAuth, checkingAuth} = useUserStore()
-    const {getCartItem} = useCartStore()
-  useEffect(()=> {
+  const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book", "/products", "/services", "/cart",
+    "/account/info", '/account/order', '/account/address', "/admin-samuel", "/admin-samuel/createproducts",
+    "/admin-samuel/orders", "/admin-samuel/bookings", "/admin-samuel/products",
+    "/admin-samuel/show-booking/:id", "/admin-samuel/event", "/checkout"].includes(location.pathname)
+  const { user, checkAuth, checkingAuth } = useUserStore()
+  const { getCartItem } = useCartStore()
+  useEffect(() => {
     checkAuth()
   }, [checkAuth])
 
-  useEffect(()=> {
+  useEffect(() => {
     if (user) getCartItem()
-  },[getCartItem, user])
-  
-  if (checkingAuth) return <LoadingSpinner/>
+  }, [getCartItem, user])
+
+  if (checkingAuth) return <LoadingSpinner />
   return (
     <div>
       {routesWithNavbar && <NavBar />}
       <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/about' element={<About />}/>
-        <Route path='/contact' element={<Contact />}/>
-        <Route path='/book' element={<Booking />}/>
-        <Route path='/products' element={<Products />}/>
-        <Route path='/services' element={<Services />}/>
-        <Route path="products/details/:id" element={<ShowProductDetail /> }/>
-        <Route path="/account"element={!user ? <Login /> : <Account/>}>
-          <Route path="info" element={<AccountInfo />}/>
-          <Route path="order" element={<Order />}/>
-          <Route path="address" element={<Address />}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/book' element={<Booking />} />
+        <Route path='/products' element={<Products />} />
+        <Route path='/services' element={<Services />} />
+        <Route path="products/details/:id" element={<ShowProductDetail />} />
+        <Route path="/account" element={!user ? <Login /> : <Account />}>
+          <Route path="info" element={<AccountInfo />} />
+          <Route path="order" element={<Order />} />
+          <Route path="address" element={<Address />} />
         </Route>
-        <Route path='/cart' element={!user ? <Login /> : <Cart/>}/>
-        <Route path='/checkout' element={!user ? <Login /> : <Checkout/>}/>
-        <Route path='/checkout-success' element={!user ? <Login /> :<CheckoutSuccess/>}/>
-        <Route path='/admin-samuel' element={user?.role ==='admin'? <AdminPage /> : <Navigate to="*" />}>
-          <Route path='createproducts' element={<CreateProducts />}/>
-          <Route path='orders' element={<AdminOrder />}/>
-          <Route path='bookings' element={<GetBookings />}/>
-          <Route path='products' element={<AdminProducts />}/>
-          <Route path='show-booking/:id' element={<ShowBookings />}/>
-          <Route path='updateproduct/:id' element={<AdminUPdateProduct />}/>
+        <Route path='/cart' element={!user ? <Login /> : <Cart />} />
+        <Route path='/checkout' element={!user ? <Login /> : <Checkout />} />
+        <Route path='/checkout-success' element={!user ? <Login /> : <CheckoutSuccess />} />
+        <Route path='/admin-samuel' element={user?.role === 'admin' ? <AdminPage /> : <Navigate to="*" />}>
+          <Route path='createproducts' element={<CreateProducts />} />
+          <Route path='orders' element={<AdminOrder />} />
+          <Route path='bookings' element={<GetBookings />} />
+          <Route path='products' element={<AdminProducts />} />
+          <Route path='event' element={<AdminEvents />} />
+          <Route path='show-booking/:id' element={<ShowBookings />} />
+          <Route path='updateproduct/:id' element={<AdminUPdateProduct />} />
         </Route>
-        <Route element={user &&<Navigate to ="/"/> }>
-          <Route path='/login' element={!user? <Login /> : <Navigate to="/" />}/>
-          <Route path='/signup' element={!user? <Signup /> : <Navigate to ="/" />}/>
-          <Route path='/check-email' element={!user? <Redirect /> : <Navigate to={"/"}/>}/>
-          <Route path='/activate/:token' element={!user ? <Activate /> : <Navigate to={"/"}/>}/>
-          <Route path='/forgot-password' element={!user? <Forget /> : <Navigate to="/"/>}/>
-          <Route path='/reset-password/:token' element={!user ? <ResetPassword /> : <Navigate to ="/" />}/>
+        <Route element={user && <Navigate to="/" />}>
+          <Route path='/login' element={!user ? <Login /> : <Navigate to="/" />} />
+          <Route path='/signup' element={!user ? <Signup /> : <Navigate to="/" />} />
+          <Route path='/check-email' element={!user ? <Redirect /> : <Navigate to={"/"} />} />
+          <Route path='/activate/:token' element={!user ? <Activate /> : <Navigate to={"/"} />} />
+          <Route path='/forgot-password' element={!user ? <Forget /> : <Navigate to="/" />} />
+          <Route path='/reset-password/:token' element={!user ? <ResetPassword /> : <Navigate to="/" />} />
         </Route>
-        <Route path='*' element={<NotFound />}/>
+        <Route path='*' element={<NotFound />} />
       </Routes>
       {routesWithNavbar && <Footer />}
       <Toaster />

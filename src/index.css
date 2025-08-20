@@ -1,50 +1,63 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary : #F5871F;
-    --color-secondary : #FFF2E1;
-    --color-ash : #F8F8F8;
+    --color-primary: #F5871F;
+    --color-secondary: #FFF2E1;
+    --color-ash: #F8F8F8;
 }
 
-header, section, footer, main{
+header,
+section,
+footer,
+main {
     @apply px-[30px] py-[30px] md:px-[50px] lg:px-[70px] lg:py-10 relative
 }
 
 .home-service {
     @apply hover:-translate-y-1
 }
-.home-service ul{
+
+.home-service ul {
     @apply hidden
 }
+
 .home-booking span,
-.home-booking .text-area{
+.home-booking .text-area {
     @apply hidden
 }
-.home-booking .personal-info .info, 
+
+.home-booking .personal-info .info,
 .home-booking .schedule .info,
 .booking-page .personal-info .info,
 .booking-page .schedule .info {
     @apply lg:grid lg:grid-cols-2 items-center gap-x-5 max-w-full overflow-x-auto
 }
+
 .service-page {
     @apply border-t-7 border-primary
 }
+
 .service-page a {
     @apply hidden
 }
+
 .booking-page button {
     @apply w-fit justify-self-center p-3 px-12
 }
+
 .booking-header a,
-.contact-header a{
+.contact-header a {
     @apply bg-[#25d366]
 }
+
 .btn {
-    @apply  duration-500 font-semibold py-5 px-10 rounded lg:w-fit flex flex-col gap-3 md:flex-row items-center shadow-[0_0_5px_1px_rgba(0,0,0,0.2)]
+    @apply duration-500 font-semibold py-5 px-10 rounded lg:w-fit flex flex-col gap-3 md:flex-row items-center shadow-[0_0_5px_1px_rgba(0, 0, 0, 0.2)]
 }
-td, th{
+
+td, th {
     @apply p-5 text-center
 }
+
 td {
     @apply py-6
 }

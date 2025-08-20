@@ -19,14 +19,14 @@ const TestimonialCard = () => {
         breakpoint: 1024, // large screens
         settings: {
           slidesToShow: 2,
-          slidesToScroll : 2,
+          slidesToScroll: 2,
         }
       },
       {
         breakpoint: 640, // tablets
         settings: {
           slidesToShow: 1,
-        slidesToScroll: 1,
+          slidesToScroll: 1,
         }
       }
     ]
