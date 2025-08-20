@@ -47,7 +47,7 @@ const Event = () => {
                 <img
                     src={events[0].image}
                     alt={'Event image'}
-                    className="max-h-[300px] min-w-full object-cover"
+                    className="max-h-[500px] lg:max-h-[400px] min-w-full object-cover"
                 />
             ) : (
                 <Slider {...settings}>
