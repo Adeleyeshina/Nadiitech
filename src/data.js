@@ -237,13 +237,13 @@ export const teamMembers = [
         position: "Admin (Technical Supervisor)",
         bio: "Oversees technical operations and ensures efficient administrative workflows witin the engineering team."
     },
-    {
-        id: 3,
-        img: team3,
-        name: "Doris Kehinde",
-        position: "Secretary",
-        bio: "Manages documentation, schedules, and internal communications to support seamless organization operations,"
-    }
+    // {
+    //     id: 3,
+    //     img: team3,
+    //     name: "Doris Kehinde",
+    //     position: "Secretary",
+    //     bio: "Manages documentation, schedules, and internal communications to support seamless organization operations,"
+    // }
 ]
 export const faq = [
     {
