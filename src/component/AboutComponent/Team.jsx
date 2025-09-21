@@ -10,7 +10,7 @@ const Team = () => {
              body={"The brilliant minds behind NADII's innovative solutions."}
             />
 
-            <div className='flex flex-col md:flex-row gap-10 justify-between '>
+            <div className='flex flex-col md:flex-row gap-x-10 justify-between '>
                 {
                     teamMembers.map(({id, img, name, position , bio}) => {
                         return (
