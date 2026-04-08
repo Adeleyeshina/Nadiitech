@@ -57,7 +57,7 @@ const CreateProducts = () => {
   }
 
   return (
-    <div className='lg:px-10 overflow-hidden px-7'>
+    <div className='lg:px-10 overflow-hidden'>
       <h2 className='text-2xl md:text-3xl font-bold text-center mb-4 text-primary'>
         Create New Products
       </h2>

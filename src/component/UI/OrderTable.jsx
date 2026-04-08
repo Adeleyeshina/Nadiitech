@@ -12,60 +12,65 @@ const OrderTable = ({ orders, isAdmin }) => {
 
   return (
     <article className="w-full">
-      <table className="w-full mt-5 text-sm mx-auto">
-        <thead className="bg-primary text-white">
-          <tr className=''>
-            <th className="text-left  py-2">Order ID</th>
-            <th className="hidden lg:table-cell text-left  py-2">Order Date</th>
-            <th className="text-left  py-2">Status</th>
-            <th className="hidden lg:table-cell text-left  py-2">Price</th>
-            <th className="text-left  py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => (
-            <tr key={order._id} className="border-b last:border-none">
-              <td className=" py-2 font-medium break-all">
-                #ORD-{order._id.slice(-4).toUpperCase()}
-              </td>
-              <td className="hidden lg:table-cell  py-2">
-                {new Date(order.createdAt).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
-              </td>
-              <td className=" py-2">
-                <span
-                  className={`inline-block px-1.5 lg:px-2 py-1 rounded text-xs font-semibold
-                    ${
-                      order.status === 'success'
-                        ? 'bg-green-100 text-green-700'
-                        : order.status === 'pending'
-                        ? 'bg-yellow-100 text-yellow-700'
-                        : order.status === 'failed'
-                        ? 'bg-red-100 text-red-700'
-                        : 'bg-gray-100 text-gray-700'
-                    }`}
-                >
-                  {order.status}
-                </span>
-              </td>
-              <td className="hidden lg:table-cell  py-2 font-semibold whitespace-nowrap">
-                {order.totalAmount.toLocaleString()}
-              </td>
-              <td className=" py-2 cursor-pointer">
-                <button
-                  onClick={() => handleView(order)}
-                  className="bg-primary hover:opacity-90 text-white text-xs font-medium px-3 py-1.5 rounded transition"
-                >
-                  View Details
-                </button>
-              </td>
+      <div className="overflow-x-auto border border-gray-100 rounded-xl shadow-sm">
+        <table className="w-full text-sm text-left border-collapse min-w-[700px]">
+          <thead>
+            <tr className="bg-gray-50/50 border-b border-gray-100">
+              <th className="px-6 py-4 text-xs font-black text-gray-400 uppercase tracking-widest w-12"></th>
+              <th className="px-6 py-4 text-xs font-black text-gray-400 uppercase tracking-widest">Order ID</th>
+              <th className="px-6 py-4 text-xs font-black text-gray-400 uppercase tracking-widest">Date</th>
+              <th className="px-6 py-4 text-xs font-black text-gray-400 uppercase tracking-widest">Status</th>
+              <th className="px-6 py-4 text-xs font-black text-gray-400 uppercase tracking-widest text-right">Amount</th>
+              <th className="px-6 py-4 text-xs font-black text-gray-400 uppercase tracking-widest text-right">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-gray-50">
+            {orders.map((order, index) => (
+              <tr key={order._id} className="hover:bg-gray-50/30 transition-colors text-gray-700">
+                <td className="px-6 py-5 whitespace-nowrap text-gray-400 font-bold text-xs">
+                  {index + 1}
+                </td>
+                <td className="px-6 py-5 font-bold whitespace-nowrap">
+                  #ORD-{order._id.slice(-6).toUpperCase()}
+                </td>
+                <td className="px-6 py-5 whitespace-nowrap">
+                  {new Date(order.createdAt).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })}
+                </td>
+                <td className="px-6 py-5 whitespace-nowrap">
+                  <span
+                    className={`inline-flex px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest
+                      ${order.status === 'success'
+                        ? 'bg-green-50 text-green-600 border border-green-100'
+                        : order.status === 'pending'
+                          ? 'bg-yellow-50 text-yellow-600 border border-yellow-100'
+                          : order.status === 'failed'
+                            ? 'bg-red-50 text-red-600 border border-red-100'
+                            : 'bg-gray-50 text-gray-600 border border-gray-100'
+                      }`}
+                  >
+                    {order.status}
+                  </span>
+                </td>
+                <td className="px-6 py-5 font-black text-gray-900 text-right whitespace-nowrap">
+                  ₦{order.totalAmount.toLocaleString()}
+                </td>
+                <td className="px-6 py-5 text-right whitespace-nowrap">
+                  <button
+                    onClick={() => handleView(order)}
+                    className="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-lg font-bold text-xs transition-all"
+                  >
+                    View Details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {modalOpen && (
         <OrderModal

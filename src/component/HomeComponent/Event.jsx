@@ -51,7 +51,7 @@ const Event = () => {
                 />
             ) : (
                 <Slider {...settings}>
-                    {events.map((item, index) => (
+                    {Array.isArray(events) && events.map((item, index) => (
                         <img
                             key={index}
                             src={item.image}

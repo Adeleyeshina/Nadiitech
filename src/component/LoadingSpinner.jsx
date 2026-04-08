@@ -1,5 +1,23 @@
 import React from 'react'
-import { ImSpinner3 } from 'react-icons/im'
+import { ImSpinner2, ImSpinner3 } from 'react-icons/im'
+
+export const LoadingDataSpinner = ({ fullPage = true }) => {
+  return (
+    <div className={`flex flex-col items-center justify-center gap-4 ${fullPage ? 'min-h-[60vh] w-full' : 'py-10'}`}>
+      <div className="relative">
+        <ImSpinner2 className="text-primary animate-spin" size={48} />
+        <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl animate-pulse"></div>
+      </div>
+      <p className="text-gray-400 font-bold text-xs uppercase tracking-[0.3em] animate-pulse">
+        Loading Data
+      </p>
+    </div>
+  )
+}
+
+
+
+
 
 const LoadingSpinner = () => {
   return (

@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import NavBar from '../NavBar';
-import Footer from '../Footer';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useProductStore } from '../../stores/useProductStore';
 import LoadingSpinner from '../LoadingSpinner';
@@ -46,9 +44,7 @@ const ShowProductDetail = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div>
-      <NavBar />
-
+    <div className='p-5 lg:p-10'>
       <section className="">
         <span
           onClick={() => navigate("/products")}
@@ -147,7 +143,6 @@ const ShowProductDetail = () => {
       </section>
 
       <ProductPageCta />
-      <Footer />
     </div>
   );
 };

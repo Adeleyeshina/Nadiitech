@@ -2,9 +2,8 @@ import React, { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import NavBar from './component/NavBar'
 import { useUserStore } from './stores/useUserStore'
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Account from './pages/Account'
@@ -15,15 +14,12 @@ import Services from './pages/Services'
 import Cart from './pages/Cart'
 import Signup from "./pages/Signup"
 import Login from './pages/Login'
-import Footer from './component/Footer'
 import NotFound from "./pages/NotFound"
 import Forget from './pages/Forget'
 import Redirect from './pages/Redirect'
 import ResetPassword from './pages/ResetPassword'
 import Activate from './pages/Activate'
 import AdminPage from './pages/AdminPage'
-import RedirectIfAuth from './component/RedirectIfAuth'
-import AllowIfAuth from './component/AllowIfAuth'
 import AccountInfo from './component/AccountComponent/AccountInfo'
 import Order from './component/AccountComponent/Order'
 import Address from './component/AccountComponent/Address'
@@ -39,15 +35,12 @@ import CheckoutSuccess from './component/CartComponent/CheckoutSuccess';
 import AdminUPdateProduct from './component/AdminComponent/AdminUPdateProduct';
 import { useCartStore } from './stores/useCartStore';
 import AdminEvents from './component/AdminComponent/AdminEvents';
+import Layout from './component/Layout';
 
 const App = () => {
-  const location = useLocation()
-  const routesWithNavbar = ["/", "/about", "/contact", "/account", "/book", "/products", "/services", "/cart",
-    "/account/info", '/account/order', '/account/address', "/admin-samuel", "/admin-samuel/createproducts",
-    "/admin-samuel/orders", "/admin-samuel/bookings", "/admin-samuel/products",
-    "/admin-samuel/show-booking/:id", "/admin-samuel/event", "/checkout"].includes(location.pathname)
   const { user, checkAuth, checkingAuth } = useUserStore()
   const { getCartItem } = useCartStore()
+
   useEffect(() => {
     checkAuth()
   }, [checkAuth])
@@ -57,34 +50,40 @@ const App = () => {
   }, [getCartItem, user])
 
   if (checkingAuth) return <LoadingSpinner />
+
   return (
     <div>
-      {routesWithNavbar && <NavBar />}
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/book' element={<Booking />} />
-        <Route path='/products' element={<Products />} />
-        <Route path='/services' element={<Services />} />
-        <Route path="products/details/:id" element={<ShowProductDetail />} />
-        <Route path="/account" element={!user ? <Login /> : <Account />}>
-          <Route path="info" element={<AccountInfo />} />
-          <Route path="order" element={<Order />} />
-          <Route path="address" element={<Address />} />
+        <Route element={<Layout />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/book' element={<Booking />} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/services' element={<Services />} />
+          <Route path="products/details/:id" element={<ShowProductDetail />} />
+          <Route path='/cart' element={!user ? <Login /> : <Cart />} />
+          <Route path='/checkout' element={!user ? <Login /> : <Checkout />} />
+          
+          <Route path='/account' element={!user ? <Login /> : <Account />}>
+            <Route path="info" element={<AccountInfo />} />
+            <Route path="order" element={<Order />} />
+            <Route path="address" element={<Address />} />
+          </Route>
+
+          <Route path='/admin-samuel' element={user?.role === 'admin' ? <AdminPage /> : <Navigate to="*" />}>
+            <Route path='createproducts' element={<CreateProducts />} />
+            <Route path='orders' element={<AdminOrder />} />
+            <Route path='bookings' element={<GetBookings />} />
+            <Route path='products' element={<AdminProducts />} />
+            <Route path='event' element={<AdminEvents />} />
+            <Route path='show-booking/:id' element={<ShowBookings />} />
+            <Route path='updateproduct/:id' element={<AdminUPdateProduct />} />
+          </Route>
         </Route>
-        <Route path='/cart' element={!user ? <Login /> : <Cart />} />
-        <Route path='/checkout' element={!user ? <Login /> : <Checkout />} />
+
         <Route path='/checkout-success' element={!user ? <Login /> : <CheckoutSuccess />} />
-        <Route path='/admin-samuel' element={user?.role === 'admin' ? <AdminPage /> : <Navigate to="*" />}>
-          <Route path='createproducts' element={<CreateProducts />} />
-          <Route path='orders' element={<AdminOrder />} />
-          <Route path='bookings' element={<GetBookings />} />
-          <Route path='products' element={<AdminProducts />} />
-          <Route path='event' element={<AdminEvents />} />
-          <Route path='show-booking/:id' element={<ShowBookings />} />
-          <Route path='updateproduct/:id' element={<AdminUPdateProduct />} />
-        </Route>
+
         <Route element={user && <Navigate to="/" />}>
           <Route path='/login' element={!user ? <Login /> : <Navigate to="/" />} />
           <Route path='/signup' element={!user ? <Signup /> : <Navigate to="/" />} />
@@ -95,7 +94,6 @@ const App = () => {
         </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
-      {routesWithNavbar && <Footer />}
       <Toaster />
     </div>
   )
