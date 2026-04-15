@@ -27,7 +27,7 @@ const ContactInfo = () => {
         <section className='pt-10'>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
                 <div className='p-7 md:p-10 shadow rounded-lg'>
-                    <h3 className='font-bold text-[30px] mb-2'>Send Us a Message</h3>
+                    <h3 className='font-bold text-2xl md:text-[30px] mb-2'>Send Us a Message</h3>
                     <form onSubmit={handleSubmit(onSubmit)} className='grid gap-5'>
                         <div>
                             <label htmlFor="name" className='text-sm font-semibold block mb-3'>Full Name *</label>
@@ -118,7 +118,7 @@ const ContactInfo = () => {
 
                 <div>
                     <div className='p-10 shadow rounded-lg'>
-                        <h3 className='font-bold text-[30px] mb-2'>Quick Contact Info</h3>
+                        <h3 className='font-bold text-2xl md:text-[30px] mb-2'>Quick Contact Info</h3>
                         <div className='mt-5 grid gap-5'>
                             <div className='flex items-start gap-5'>
                                 <button className='bg-secondary p-4 mb-2 rounded-full '>
