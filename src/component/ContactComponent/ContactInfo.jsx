@@ -11,7 +11,7 @@ const ContactInfo = () => {
     const whatsappNo = import.meta.env.VITE_WHATSAPP_NO
     const email = import.meta.env.VITE_EMAIL
     const address = import.meta.env.VITE_ADDRESS
-    const Message = import.meta.VITE_WHATSAPP_MESSAGE
+    const Message = import.meta.env.VITE_WHATSAPP_MESSAGE
 
     const { loading, sendMessage } = contactStore()
 
