@@ -163,7 +163,7 @@ const ContactInfo = () => {
                                 </button>
                                 <div>
                                     <h3 className='font-semibold text-[20px] mb-1'>Google Map</h3>
-                                    <Link to={'https://maps.app.goo.gl/CEja919imQGpFkXJ8?g_st=awb'} target='_blank' rel='noopener noreferrer nofollow'
+                                    <Link to={'https://maps.app.goo.gl/Q88a6gBFJW8HnQUYA?g_st=awb'} target='_blank' rel='noopener noreferrer nofollow'
                                         className='px-5 py-3 rounded-lg bg-primary block text-white'>Open Map</Link>
                                 </div>
                             </div>
